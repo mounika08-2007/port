@@ -12,6 +12,7 @@ import {
   LogOut,
   ChevronLeft,
   LayoutDashboard,
+  Sliders,
 } from 'lucide-react';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 
@@ -20,6 +21,7 @@ const navItems = [
   { href: '/admin/projects', label: 'Projects', icon: FolderKanban },
   { href: '/admin/skills', label: 'Skills', icon: Zap },
   { href: '/admin/social', label: 'Social Links', icon: Share2 },
+  { href: '/admin/vibe', label: 'Vibe & Experience', icon: Sliders },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
