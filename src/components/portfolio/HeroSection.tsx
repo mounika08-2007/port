@@ -68,38 +68,11 @@ export default function HeroSection({ profile }: HeroSectionProps) {
           className="text-5xl md:text-7xl font-bold mb-4 tracking-tight"
         >
           {profile.animation_style === 'glitch' ? (
-            <span className="relative inline-block select-none">
-              <span className="absolute left-0 top-0 text-red-500 animate-glitch-1 opacity-70 w-full h-full" style={{ clipPath: 'inset(40% 0 61% 0)' }}>
-                {profile.full_name}
-              </span>
+            <span 
+              className="relative inline-block select-none dynamic-glitch-text uppercase"
+              data-text={profile.full_name}
+            >
               <span className="gradient-text relative z-10">{profile.full_name}</span>
-              <span className="absolute left-0 top-0 text-cyan-400 animate-glitch-2 opacity-70 w-full h-full" style={{ clipPath: 'inset(12% 0 85% 0)' }}>
-                {profile.full_name}
-              </span>
-              <style>{`
-                @keyframes glitch-anim-1 {
-                  0% { clip-path: inset(20% 0 60% 0); transform: skew(0.5deg); }
-                  20% { clip-path: inset(60% 0 10% 0); transform: skew(-0.3deg); }
-                  40% { clip-path: inset(10% 0 80% 0); transform: skew(0.6deg); }
-                  60% { clip-path: inset(80% 0 5% 0); transform: skew(-0.4deg); }
-                  80% { clip-path: inset(5% 0 90% 0); transform: skew(0.8deg); }
-                  100% { clip-path: inset(45% 0 35% 0); transform: skew(0deg); }
-                }
-                @keyframes glitch-anim-2 {
-                  0% { clip-path: inset(40% 0 30% 0); transform: skew(-0.6deg); }
-                  20% { clip-path: inset(10% 0 70% 0); transform: skew(0.4deg); }
-                  40% { clip-path: inset(80% 0 5% 0); transform: skew(-0.5deg); }
-                  60% { clip-path: inset(5% 0 85% 0); transform: skew(0.7deg); }
-                  80% { clip-path: inset(70% 0 10% 0); transform: skew(-0.2deg); }
-                  100% { clip-path: inset(30% 0 45% 0); transform: skew(0deg); }
-                }
-                .animate-glitch-1 {
-                  animation: glitch-anim-1 1s infinite linear alternate-reverse;
-                }
-                .animate-glitch-2 {
-                  animation: glitch-anim-2 1.2s infinite linear alternate-reverse;
-                }
-              `}</style>
             </span>
           ) : (
             <span className="gradient-text">{profile.full_name}</span>

@@ -3,96 +3,65 @@
 import { useEffect, useRef } from 'react';
 
 interface MatrixRainProps {
-  themeColor: string;
+  themeColor?: string;
 }
 
-export default function MatrixRain({ themeColor }: MatrixRainProps) {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+export default function MatrixRain({ themeColor = '#22c55e' }: MatrixRainProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Columns size based on font size
-    const fontSize = 14;
-    let columns = Math.floor(width / fontSize);
+    const columns = Math.floor(width / 20);
+    const drops = Array(columns).fill(1);
+    const chars = '01011010ABCDEF/*-+XΩΨ';
 
-    // Rain drop vertical trackers
-    let drops: number[] = [];
-    const initDrops = () => {
-      columns = Math.floor(width / fontSize);
-      drops = [];
-      for (let i = 0; i < columns; i++) {
-        drops[i] = Math.random() * -100; // Offset start heights to stagger rainfall
-      }
+    const hexToRgb = (hex: string) => {
+      const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+      const fullHex = hex.replace(shorthandRegex, (_, r, g, b) => r + r + g + g + b + b);
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(fullHex);
+      return result
+        ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`
+        : '34, 197, 94'; // Default to green
     };
-    initDrops();
 
-    const charList = '0101ABCDEFGHIJKLMNOPQRSTUVWXYZアイウエオカキクケコサシスセソタチツテト';
+    const rgbString = hexToRgb(themeColor);
 
-    let lastTime = 0;
-    const fps = 24; // Throttle to 24fps for classic retro digital rain feel and CPU efficiency
-    const interval = 1000 / fps;
-    let animationFrameId: number;
-
-    const draw = (timestamp: number) => {
-      animationFrameId = requestAnimationFrame(draw);
-
-      const elapsed = timestamp - lastTime;
-      if (elapsed < interval) return;
-      lastTime = timestamp - (elapsed % interval);
-
-      // Translucent black screen-clears form trails that merge nicely with dark background and glass cards
-      ctx.fillStyle = 'rgba(5, 5, 8, 0.12)';
+    const draw = () => {
+      ctx.fillStyle = 'rgba(9, 9, 11, 0.06)'; // Creates trailing effect seamlessly
       ctx.fillRect(0, 0, width, height);
-
-      ctx.font = `bold ${fontSize}px "Courier New", monospace`;
+      
+      ctx.fillStyle = `rgba(${rgbString}, 0.35)`; // Dynamic theme matrix dimming
+      ctx.font = '14px monospace';
 
       for (let i = 0; i < drops.length; i++) {
-        // Grab random character
-        const text = charList.charAt(Math.floor(Math.random() * charList.length));
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * 20, drops[i] * 20);
 
-        if (y > 0) {
-          // Dynamic character gradients: leading falling character is white/bright, trails are custom theme color
-          const isLead = Math.random() > 0.95;
-          ctx.fillStyle = isLead ? '#ffffff' : themeColor;
-          ctx.shadowBlur = isLead ? 8 : 2;
-          ctx.shadowColor = themeColor;
-
-          ctx.fillText(text, x, y);
-          ctx.shadowBlur = 0; // Reset blur
-        }
-
-        // Send columns back to top randomly
-        if (y > height && Math.random() > 0.985) {
+        if (drops[i] * 20 > height && Math.random() > 0.975) {
           drops[i] = 0;
         }
-
         drops[i]++;
       }
     };
 
-    animationFrameId = requestAnimationFrame(draw);
+    const interval = setInterval(draw, 33);
 
     const handleResize = () => {
       if (!canvas) return;
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-      initDrops();
     };
-
     window.addEventListener('resize', handleResize);
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      clearInterval(interval);
       window.removeEventListener('resize', handleResize);
     };
   }, [themeColor]);
