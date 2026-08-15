@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal } from 'lucide-react';
+import { Terminal, Palette } from 'lucide-react';
 import type { Profile } from '@/types/database.types';
 import BackgroundSwitcher from '@/components/portfolio/BackgroundSwitcher';
 import HeroSection from '@/components/portfolio/HeroSection';
@@ -17,12 +17,17 @@ import GuestbookSection from '@/components/portfolio/GuestbookSection';
 import StatsDisplay from '@/components/portfolio/StatsDisplay';
 import { playSound } from '@/utils/sound';
 
+import AIChatbot from '@/components/portfolio/AIChatbot';
+import SkillsQuiz from '@/components/portfolio/SkillsQuiz';
+import BlogSection from '@/components/portfolio/BlogSection';
+
 interface PortfolioClientProps {
   profile: Profile;
 }
 
 export default function PortfolioClient({ profile }: PortfolioClientProps) {
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
+  const [showPresetsMenu, setShowPresetsMenu] = useState(false);
 
   const {
     animation_style = 'fade',
@@ -38,13 +43,73 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
     sound_effects_enabled = false,
   } = profile;
 
+  // Overridable theme styles
+  const [layout, setLayout] = useState(layout_variant);
+  const [themeColor, setThemeColor] = useState(theme_color);
+  const [fontName, setFontName] = useState(custom_font);
+  const [backgroundEffect, setBackgroundEffect] = useState<'mesh-gradient' | 'particles' | 'matrix' | 'aurora' | 'cyber-grid' | 'none'>(background_effect as any);
+  const [animationStyle, setAnimationStyle] = useState<'fade' | 'slide-up' | 'glitch' | 'liquid-reveal' | 'blur-reveal' | 'rotate-in'>(animation_style as any);
 
-  const themeColor = theme_color;
-  const fontName = custom_font;
-  const layout = layout_variant;
-  const animationStyle = animation_style;
+  const [themeMode, setThemeMode] = useState<'dark' | 'light'>('dark');
+
   const speed = animation_speed;
   const soundEnabled = sound_effects_enabled;
+
+  const applyPreset = (presetName: string) => {
+    playSound('click', soundEnabled);
+    if (presetName === 'glassmorphism') {
+      setLayout('classic');
+      setThemeColor('#6366f1');
+      setFontName('Plus Jakarta Sans');
+      setBackgroundEffect('mesh-gradient');
+      setAnimationStyle('fade');
+      setThemeMode('dark');
+    } else if (presetName === 'clean-light') {
+      setLayout('minimalist');
+      setThemeColor('#3b82f6');
+      setFontName('Plus Jakarta Sans');
+      setBackgroundEffect('none');
+      setAnimationStyle('fade');
+      setThemeMode('light');
+    } else if (presetName === 'retro-terminal') {
+      setLayout('minimalist');
+      setThemeColor('#10b981');
+      setFontName('Courier New');
+      setBackgroundEffect('none');
+      setAnimationStyle('slide-up');
+      setThemeMode('dark');
+    } else if (presetName === 'matrix-tech') {
+      setLayout('cyberpunk-grid');
+      setThemeColor('#22c55e');
+      setFontName('Courier New');
+      setBackgroundEffect('matrix');
+      setAnimationStyle('glitch');
+      setThemeMode('dark');
+    } else if (presetName === 'cyberpunk-neon') {
+      setLayout('cyberpunk-grid');
+      setThemeColor('#ec4899');
+      setFontName('Plus Jakarta Sans');
+      setBackgroundEffect('cyber-grid');
+      setAnimationStyle('glitch');
+      setThemeMode('dark');
+    } else if (presetName === 'aurora-glow') {
+      setLayout('classic');
+      setThemeColor('#8b5cf6');
+      setFontName('Plus Jakarta Sans');
+      setBackgroundEffect('aurora');
+      setAnimationStyle('blur-reveal');
+      setThemeMode('dark');
+    } else {
+      setLayout(layout_variant);
+      setThemeColor(theme_color);
+      setFontName(custom_font);
+      setBackgroundEffect(background_effect);
+      setAnimationStyle(animation_style);
+      setThemeMode('dark');
+    }
+  };
+
+
 
 
   // 1. Dynamic Font Injection
@@ -67,14 +132,21 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
     hidden: {
       opacity: 0,
       ...(animationStyle === 'slide-up' ? { y: 50 } : {}),
+      ...(animationStyle === 'blur-reveal' ? { filter: 'blur(12px)' } : {}),
+      ...(animationStyle === 'rotate-in' ? { rotateX: 20, transformPerspective: 1000 } : {}),
+      ...(animationStyle === 'glitch' ? { x: -15 } : {}),
       ...(animationStyle === 'liquid-reveal' ? { clipPath: 'circle(0% at 50% 50%)' } : {}),
     },
     visible: {
       opacity: 1,
       ...(animationStyle === 'slide-up' ? { y: 0 } : {}),
+      ...(animationStyle === 'blur-reveal' ? { filter: 'blur(0px)' } : {}),
+      ...(animationStyle === 'rotate-in' ? { rotateX: 0, transformPerspective: 1000 } : {}),
+      ...(animationStyle === 'glitch' ? { x: 0 } : {}),
       ...(animationStyle === 'liquid-reveal' ? { clipPath: 'circle(100% at 50% 50%)' } : {}),
     },
   };
+
 
   const animTransition = (animationStyle === 'liquid-reveal'
     ? {
@@ -89,20 +161,22 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
         ease: 'easeOut' as const,
       }) as any;
 
-  // 4. Background switch (Minimalist forces a flat solid black page)
-  const backgroundEffect = layout === 'minimalist' ? 'none' : (profile.background_effect || 'mesh-gradient');
+  // 4. Background switch (Minimalist forces a flat solid page)
+  const finalBgEffect = layout === 'minimalist' ? 'none' : backgroundEffect;
 
   // Render layouts
   return (
     <div
-      className="relative min-h-screen transition-all duration-500 pb-12"
+      className={`relative min-h-screen transition-all duration-500 pb-12 ${themeMode}`}
       style={{
         fontFamily: `"${fontName}", var(--font-geist-sans), system-ui, sans-serif`,
-        backgroundColor: '#050508',
+        backgroundColor: 'var(--bg-primary)',
+        color: 'var(--text-primary)',
       }}
     >
       {/* Dynamic Background switcher */}
-      <BackgroundSwitcher effect={backgroundEffect} themeColor={themeColor} />
+      <BackgroundSwitcher effect={finalBgEffect} themeColor={themeColor} />
+
 
       {/* Main Animated Page Entry Wrapper */}
       <motion.div
@@ -117,6 +191,7 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
           <main className="relative">
             <HeroSection profile={profile} />
             <SkillsGrid skills={profile.skills || []} themeColor={themeColor} />
+            <BlogSection profileId={profile.id} themeColor={themeColor} soundEnabled={soundEnabled} />
             {profile.experiences && profile.experiences.length > 0 && (
               <ExperienceTimeline experiences={profile.experiences} themeColor={themeColor} />
             )}
@@ -124,6 +199,7 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
             {github_username && (
               <StatsDisplay githubUsername={github_username} themeColor={themeColor} soundEnabled={soundEnabled} />
             )}
+            <SkillsQuiz profile={profile} themeColor={themeColor} soundEnabled={soundEnabled} />
             {profile.testimonials && profile.testimonials.length > 0 && (
               <TestimonialsSection testimonials={profile.testimonials} themeColor={themeColor} />
             )}
@@ -132,6 +208,7 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
             <Footer name={profile.full_name} themeColor={themeColor} />
           </main>
         )}
+
 
         {/* LAYOUT B: MINIMALIST COLUMN */}
         {layout === 'minimalist' && (
@@ -144,6 +221,9 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
                 <SkillsGrid skills={profile.skills} themeColor={themeColor} />
               </div>
             )}
+            <div className="pt-16">
+              <BlogSection profileId={profile.id} themeColor={themeColor} soundEnabled={soundEnabled} />
+            </div>
             {profile.experiences && profile.experiences.length > 0 && (
               <div className="pt-16">
                 <ExperienceTimeline experiences={profile.experiences} themeColor={themeColor} />
@@ -159,6 +239,9 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
                 <StatsDisplay githubUsername={github_username} themeColor={themeColor} soundEnabled={soundEnabled} />
               </div>
             )}
+            <div className="pt-16">
+              <SkillsQuiz profile={profile} themeColor={themeColor} soundEnabled={soundEnabled} />
+            </div>
             {profile.testimonials && profile.testimonials.length > 0 && (
               <div className="pt-16">
                 <TestimonialsSection testimonials={profile.testimonials} themeColor={themeColor} />
@@ -175,6 +258,7 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
             </div>
           </main>
         )}
+
 
         {/* LAYOUT C: CYBERPUNK BENTO GRID */}
         {layout === 'cyberpunk-grid' && (
@@ -245,7 +329,22 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
                 </BentoCard>
               </div>
 
+              {/* Grid block 9: Blog publisher */}
+              <div className="lg:col-span-3">
+                <BentoCard themeColor={themeColor} title="External Logs // Articles & Blog">
+                  <BlogSection profileId={profile.id} themeColor={themeColor} soundEnabled={soundEnabled} />
+                </BentoCard>
+              </div>
+
+              {/* Grid block 10: Skills Quiz */}
+              <div className="lg:col-span-3">
+                <BentoCard themeColor={themeColor} title="Interactive Challenge // Trivia Quiz">
+                  <SkillsQuiz profile={profile} themeColor={themeColor} soundEnabled={soundEnabled} />
+                </BentoCard>
+              </div>
+
             </div>
+
             
             <div className="mt-12 text-center">
               <Footer name={profile.full_name} themeColor={themeColor} />
@@ -271,6 +370,62 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
         )}
       </motion.div>
 
+      {/* Theme Presets Switcher FAB */}
+      <div className="fixed top-6 right-6 z-40">
+        <button
+          onClick={() => {
+            playSound('click', soundEnabled);
+            setShowPresetsMenu(!showPresetsMenu);
+          }}
+          className="p-3.5 rounded-full text-white shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer bg-zinc-950/80 border border-zinc-850"
+          style={{
+            boxShadow: `0 4px 20px -3px ${themeColor}30`,
+          }}
+          title="Switch Themes"
+        >
+          <Palette size={20} style={{ color: themeColor }} />
+        </button>
+
+        {/* Dropdown Menu */}
+        <AnimatePresence>
+          {showPresetsMenu && (
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              transition={{ duration: 0.15 }}
+              className="absolute right-0 mt-3 w-56 bg-zinc-950 border border-zinc-850 rounded-xl shadow-2xl p-2.5 space-y-1.5"
+            >
+              <div className="px-2 py-1 border-b border-zinc-900 pb-1.5 mb-1">
+                <h4 className="text-[10px] font-bold text-zinc-550 uppercase tracking-wider">Visual Presets</h4>
+              </div>
+              {[
+                { id: 'default', label: '🔄 Profile Defaults', style: 'border-zinc-850 hover:bg-zinc-900 text-zinc-400' },
+                { id: 'glassmorphism', label: '🎨 Sleek Glassmorphism (Dark)', style: 'border-indigo-900/20 hover:bg-indigo-950/20 text-indigo-300 font-semibold' },
+                { id: 'clean-light', label: '☀️ Clean Minimalist (Light)', style: 'border-blue-900/20 hover:bg-blue-950/20 text-blue-400 font-semibold' },
+                { id: 'retro-terminal', label: '📟 Retro Terminal (Dark)', style: 'border-emerald-900/20 hover:bg-emerald-950/20 text-emerald-300 font-semibold' },
+                { id: 'matrix-tech', label: '🔌 Matrix Tech Grid (Dark)', style: 'border-green-900/20 hover:bg-green-950/20 text-green-300 font-semibold' },
+                { id: 'cyberpunk-neon', label: '⚡ Cyberpunk Pink (Dark)', style: 'border-pink-900/20 hover:bg-pink-950/20 text-pink-300 font-semibold' },
+                { id: 'aurora-glow', label: '🌌 Aurora Glow (Dark)', style: 'border-purple-900/20 hover:bg-purple-950/20 text-purple-300 font-semibold' }
+              ].map(preset => (
+
+                <button
+                  key={preset.id}
+                  type="button"
+                  onClick={() => {
+                    applyPreset(preset.id);
+                    setShowPresetsMenu(false);
+                  }}
+                  className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold border transition-all duration-150 cursor-pointer ${preset.style}`}
+                >
+                  {preset.label}
+                </button>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
       {/* Floating Action Button for Retro Terminal */}
       {show_terminal_toggle && (
         <button
@@ -289,6 +444,13 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
         </button>
       )}
 
+      {/* AI Chatbot FAB & Window */}
+      <AIChatbot
+        profile={profile}
+        themeColor={themeColor}
+        soundEnabled={soundEnabled}
+      />
+
       {/* Retro Interactive Terminal overlay */}
       <AnimatePresence>
         {isTerminalOpen && (
@@ -298,6 +460,7 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
           />
         )}
       </AnimatePresence>
+
     </div>
   );
 }

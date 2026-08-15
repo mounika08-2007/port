@@ -361,8 +361,11 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                   { id: 'fade', label: 'Fade In', desc: 'Progressive opacity entrance.' },
                   { id: 'slide-up', label: 'Slide Up', desc: 'Vertical rising slide entrance.' },
                   { id: 'glitch', label: 'Digital Glitch', desc: 'Cyber text clipping shadows.' },
-                  { id: 'liquid-reveal', label: 'Liquid Reveal', desc: 'Circular gooey spring reveal.' }
+                  { id: 'liquid-reveal', label: 'Liquid Reveal', desc: 'Circular gooey spring reveal.' },
+                  { id: 'blur-reveal', label: 'Blur Reveal', desc: 'Soft blur clearing reveal.' },
+                  { id: 'rotate-in', label: 'Rotate 3D', desc: 'Slight perspective 3D flip.' }
                 ].map(opt => (
+
                   <button
                     key={opt.id}
                     onClick={() => {
@@ -425,13 +428,16 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {[
                   { id: 'mesh-gradient', label: 'Mesh Blob', icon: '🎨' },
                   { id: 'particles', label: 'Particles', icon: '✨' },
                   { id: 'matrix', label: 'Matrix Rain', icon: '👾' },
+                  { id: 'aurora', label: 'Aurora Flow', icon: '🌌' },
+                  { id: 'cyber-grid', label: 'Cyber Grid', icon: '⚡' },
                   { id: 'none', label: 'Solid Dark', icon: '🌑' }
                 ].map(opt => (
+
                   <button
                     key={opt.id}
                     type="button"

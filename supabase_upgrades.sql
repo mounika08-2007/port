@@ -23,15 +23,29 @@ CREATE TABLE IF NOT EXISTS public.guestbook (
 ALTER TABLE public.guestbook ENABLE ROW LEVEL SECURITY;
 
 -- Allow anyone to read guestbook entries (public read access)
+DROP POLICY IF EXISTS "Public guestbook entries are viewable by everyone" ON public.guestbook;
 CREATE POLICY "Public guestbook entries are viewable by everyone"
   ON public.guestbook FOR SELECT USING (true);
 
 -- Allow anyone to insert guestbook entries (public write access)
+DROP POLICY IF EXISTS "Anyone can insert guestbook entries" ON public.guestbook;
 CREATE POLICY "Anyone can insert guestbook entries"
   ON public.guestbook FOR INSERT WITH CHECK (true);
 
 -- Enable realtime functionality for the guestbook table
-ALTER PUBLICATION supabase_realtime ADD TABLE public.guestbook;
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1 
+        FROM pg_publication_tables 
+        WHERE pubname = 'supabase_realtime' 
+          AND schemaname = 'public' 
+          AND tablename = 'guestbook'
+    ) THEN
+        EXECUTE 'ALTER PUBLICATION supabase_realtime ADD TABLE public.guestbook';
+    END IF;
+END
+$$;
 
 -- Add new architectural control options to the profiles table
 ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS github_username text;
@@ -57,10 +71,12 @@ CREATE TABLE IF NOT EXISTS public.posts (
 ALTER TABLE public.posts ENABLE ROW LEVEL SECURITY;
 
 -- Allow anyone to view published blog posts
+DROP POLICY IF EXISTS "Public posts are viewable by everyone" ON public.posts;
 CREATE POLICY "Public posts are viewable by everyone"
   ON public.posts FOR SELECT USING (true);
 
 -- Allow authenticated owners to fully manage their own posts
+DROP POLICY IF EXISTS "Users can manage their own posts" ON public.posts;
 CREATE POLICY "Users can manage their own posts"
   ON public.posts FOR ALL
   USING (
@@ -69,4 +85,5 @@ CREATE POLICY "Users can manage their own posts"
   WITH CHECK (
     EXISTS (SELECT 1 FROM public.profiles WHERE profiles.id = posts.profile_id AND profiles.user_id = auth.uid())
   );
+
 
