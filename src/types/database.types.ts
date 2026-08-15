@@ -12,6 +12,24 @@ export interface Testimonial {
   avatar_url?: string;
 }
 
+export interface GuestbookEntry {
+  id: string;
+  profile_id: string;
+  visitor_name: string;
+  message: string;
+  created_at: string;
+}
+
+export interface BlogPost {
+  id: string;
+  profile_id: string;
+  title: string;
+  content: string;
+  summary?: string;
+  published_at: string;
+}
+
+
 export interface Profile {
   id: string;
   user_id?: string;
@@ -33,7 +51,13 @@ export interface Profile {
   skills?: Skill[];
   projects?: Project[];
   social_links?: SocialLink[];
+  github_username?: string;
+  show_terminal_toggle?: boolean;
+  sound_effects_enabled?: boolean;
+  custom_terminal_welcome?: string;
+  posts?: BlogPost[];
 }
+
 
 export interface Skill {
   id: string;

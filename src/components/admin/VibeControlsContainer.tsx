@@ -1,12 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   Save, Sparkles, Layout, Type, Plus, Trash2, 
-  Briefcase, MessageSquare, ChevronRight, Play, Eye
+  Briefcase, MessageSquare, ChevronRight, Play, Eye,
+  Terminal, Volume2, BookOpen, Edit3
 } from 'lucide-react';
+import GithubIcon from '@/components/portfolio/icons/GithubIcon';
+import { createClient } from '@/lib/supabase';
+
 import { motion, AnimatePresence } from 'framer-motion';
-import type { Profile, Experience, Testimonial } from '@/types/database.types';
+import type { Profile, Experience, Testimonial, BlogPost } from '@/types/database.types';
+
 
 const ULTRA_MODERN_FONTS = [
   'Plus Jakarta Sans',
@@ -32,11 +37,106 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
     experiences: [],
     testimonials: [],
     theme_color: '#6366f1',
+    github_username: '',
+    show_terminal_toggle: true,
+    sound_effects_enabled: false,
+    custom_terminal_welcome: 'Type "help" to view available commands...',
     ...initialProfile
   });
 
-  const [activeTab, setActiveTab] = useState<'studio' | 'sections'>('studio');
+
+  const [activeTab, setActiveTab] = useState<'studio' | 'sections' | 'blog'>('studio');
   const [previewKey, setPreviewKey] = useState(0);
+
+  // Blog Publisher state & logic
+  const supabase = createClient();
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [postsLoading, setPostsLoading] = useState(true);
+  const [blogEditId, setBlogEditId] = useState<string | null>(null); // null = list, '-1' = add new, 'uuid' = edit
+  const [tempBlog, setTempBlog] = useState<Partial<BlogPost>>({
+    title: '',
+    summary: '',
+    content: ''
+  });
+
+  const loadPosts = async () => {
+    if (!profile.id) return;
+    setPostsLoading(true);
+    const { data, error } = await supabase
+      .from('posts')
+      .select('*')
+      .eq('profile_id', profile.id)
+      .order('published_at', { ascending: false });
+    if (data) setPosts(data);
+    setPostsLoading(false);
+  };
+
+  useEffect(() => {
+    if (activeTab === 'blog' && profile.id) {
+      loadPosts();
+    }
+  }, [activeTab, profile.id]);
+
+  const startAddBlog = () => {
+    setTempBlog({ title: '', summary: '', content: '' });
+    setBlogEditId('-1');
+  };
+
+  const startEditBlog = (post: BlogPost) => {
+    setTempBlog({ ...post });
+    setBlogEditId(post.id);
+  };
+
+  const saveBlog = async () => {
+    if (!tempBlog.title?.trim() || !tempBlog.content?.trim()) {
+      alert('Title and Content are required.');
+      return;
+    }
+    if (!profile.id) return;
+
+    try {
+      if (blogEditId === '-1') {
+        const { error } = await supabase
+          .from('posts')
+          .insert([
+            {
+              profile_id: profile.id,
+              title: tempBlog.title.trim(),
+              summary: tempBlog.summary?.trim() || '',
+              content: tempBlog.content.trim()
+            }
+          ]);
+        if (error) throw error;
+      } else if (blogEditId) {
+        const { error } = await supabase
+          .from('posts')
+          .update({
+            title: tempBlog.title.trim(),
+            summary: tempBlog.summary?.trim() || '',
+            content: tempBlog.content.trim()
+          })
+          .eq('id', blogEditId);
+        if (error) throw error;
+      }
+      setBlogEditId(null);
+      loadPosts();
+    } catch (err: any) {
+      alert(`Error saving article: ${err.message}`);
+    }
+  };
+
+  const deleteBlog = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this article?')) return;
+    try {
+      const { error } = await supabase.from('posts').delete().eq('id', id);
+      if (error) throw error;
+      loadPosts();
+      if (blogEditId === id) setBlogEditId(null);
+    } catch (err: any) {
+      alert(`Error deleting article: ${err.message}`);
+    }
+  };
+
 
   // Subsections editing states
   const [expEditIndex, setExpEditIndex] = useState<number | null>(null);
@@ -223,7 +323,18 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
         >
           📦 Timeline & Reviews Builder
         </button>
+        <button
+          onClick={() => setActiveTab('blog')}
+          className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-xs font-semibold transition-all duration-200 ${
+            activeTab === 'blog'
+              ? 'bg-purple-600 text-white border border-purple-500/20 shadow-lg'
+              : 'text-zinc-400 hover:text-white'
+          }`}
+        >
+          📝 Blog Publisher
+        </button>
       </div>
+
 
       {/* ============================================================
          TAB 1: ANIMATION & THEME STUDIO
@@ -375,7 +486,113 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
               </div>
             </div>
 
+
+            {/* Interactive Features & Integrations */}
+            <div className="glass-card-static p-6 space-y-5">
+              <div>
+                <h3 className="text-white font-semibold text-sm flex items-center gap-1.5 border-b border-zinc-800 pb-2">
+                  <Terminal size={15} className="text-purple-400" />
+                  Interactive Features & Integrations
+                </h3>
+              </div>
+
+              <div className="grid gap-5 md:grid-cols-2">
+                {/* GitHub Username */}
+                <div>
+                  <label className="block text-xs font-semibold text-white mb-2 flex items-center gap-1">
+                    <GithubIcon size={13} className="text-purple-400" />
+                    GitHub Username (Stats API)
+                  </label>
+                  <input
+                    type="text"
+                    value={profile.github_username || ''}
+                    onChange={(e) => setProfile(p => ({ ...p, github_username: e.target.value }))}
+                    className="glass-input bg-zinc-950 border border-zinc-850"
+                    placeholder="e.g. torvalds"
+                  />
+                  <span className="text-[10px] text-zinc-500 mt-1 block">
+                    Displays dynamic statistics (repositories, followers) on your portfolio.
+                  </span>
+                </div>
+
+                {/* Sound Effects */}
+                <div>
+                  <label className="block text-xs font-semibold text-white mb-2 flex items-center gap-1">
+                    <Volume2 size={13} className="text-purple-400" />
+                    Audio Feedback (Sound Effects)
+                  </label>
+                  <div className="flex items-center gap-3 mt-1.5">
+                    <button
+                      type="button"
+                      onClick={() => setProfile(p => ({ ...p, sound_effects_enabled: !p.sound_effects_enabled }))}
+                      className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+                        profile.sound_effects_enabled ? 'bg-purple-600' : 'bg-zinc-800'
+                      }`}
+                    >
+                      <span
+                        className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                          profile.sound_effects_enabled ? 'translate-x-5' : 'translate-x-0'
+                        }`}
+                      />
+                    </button>
+                    <span className="text-xs text-zinc-400">
+                      {profile.sound_effects_enabled ? 'Enabled' : 'Disabled'}
+                    </span>
+                  </div>
+                  <span className="text-[10px] text-zinc-500 mt-2 block">
+                    Synthesizes retro audio feedback for keystrokes and button clicks.
+                  </span>
+                </div>
+
+                {/* Terminal Toggle */}
+                <div className="md:col-span-2 border-t border-zinc-900 pt-4 grid gap-5 md:grid-cols-2">
+                  <div>
+                    <label className="block text-xs font-semibold text-white mb-2 flex items-center gap-1">
+                      <Terminal size={13} className="text-purple-400" />
+                      CLI Terminal mode
+                    </label>
+                    <div className="flex items-center gap-3 mt-1.5">
+                      <button
+                        type="button"
+                        onClick={() => setProfile(p => ({ ...p, show_terminal_toggle: !p.show_terminal_toggle }))}
+                        className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+                          profile.show_terminal_toggle ? 'bg-purple-600' : 'bg-zinc-800'
+                        }`}
+                      >
+                        <span
+                          className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                            profile.show_terminal_toggle ? 'translate-x-5' : 'translate-x-0'
+                          }`}
+                        />
+                      </button>
+                      <span className="text-xs text-zinc-400">
+                        {profile.show_terminal_toggle ? 'Visible' : 'Hidden'}
+                      </span>
+                    </div>
+                    <span className="text-[10px] text-zinc-500 mt-2 block">
+                      Enables a retro command-line terminal FAB on your portfolio.
+                    </span>
+                  </div>
+
+                  {profile.show_terminal_toggle && (
+                    <div>
+                      <label className="block text-xs font-semibold text-white mb-2">
+                        Terminal Welcome Message
+                      </label>
+                      <input
+                        type="text"
+                        value={profile.custom_terminal_welcome || ''}
+                        onChange={(e) => setProfile(p => ({ ...p, custom_terminal_welcome: e.target.value }))}
+                        className="glass-input bg-zinc-950 border border-zinc-850"
+                        placeholder="Type 'help' to view commands..."
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
+
 
           {/* Real-time Visual Sandbox Preview Column */}
           <div className="space-y-4">
@@ -787,6 +1004,144 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
         </div>
       )}
 
+      {/* ============================================================
+         TAB 3: BLOG PUBLISHER
+         ============================================================ */}
+      {activeTab === 'blog' && (
+        <div className="space-y-6">
+          <div className="glass-card-static p-6 space-y-4">
+            <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
+              <div>
+                <h3 className="text-white font-semibold text-sm flex items-center gap-1.5">
+                  <BookOpen size={15} className="text-purple-400" />
+                  Article Publisher Studio
+                </h3>
+                <p className="text-[10px] text-zinc-500 mt-0.5">Publish and manage blog posts directly linked to your profile.</p>
+              </div>
+              {blogEditId === null && (
+                <button
+                  type="button"
+                  onClick={startAddBlog}
+                  className="btn-ghost !py-1 px-2.5 text-xs text-purple-400 hover:text-white flex items-center gap-1 border-zinc-850 hover:bg-zinc-900"
+                >
+                  <Plus size={13} /> Add Article
+                </button>
+              )}
+            </div>
+
+            {/* Article editor form */}
+            {blogEditId !== null ? (
+              <div className="border border-zinc-850 rounded-xl p-4 bg-zinc-900/20 space-y-4">
+                <h4 className="text-xs font-semibold text-purple-400 uppercase tracking-wider">
+                  {blogEditId === '-1' ? 'Create New Article' : 'Edit Article Settings'}
+                </h4>
+
+                <div className="space-y-3">
+                  <div>
+                    <label className="text-[10px] text-zinc-400 uppercase font-bold">Article Title *</label>
+                    <input
+                      type="text"
+                      value={tempBlog.title || ''}
+                      onChange={(e) => setTempBlog(prev => ({ ...prev, title: e.target.value }))}
+                      className="glass-input mt-1 !py-1.5 text-xs bg-zinc-950 border border-zinc-850"
+                      placeholder="e.g. Master React and Next.js Server Components"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-[10px] text-zinc-400 uppercase font-bold">Short Summary / Subtitle</label>
+                    <input
+                      type="text"
+                      value={tempBlog.summary || ''}
+                      onChange={(e) => setTempBlog(prev => ({ ...prev, summary: e.target.value }))}
+                      className="glass-input mt-1 !py-1.5 text-xs bg-zinc-950 border border-zinc-850"
+                      placeholder="e.g. An in-depth guide on streaming and dynamic layouts."
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-[10px] text-zinc-400 uppercase font-bold">Body Content (Markdown Supported) *</label>
+                    <textarea
+                      value={tempBlog.content || ''}
+                      onChange={(e) => setTempBlog(prev => ({ ...prev, content: e.target.value }))}
+                      className="glass-textarea mt-1 !py-2 text-xs bg-zinc-950 border border-zinc-850 font-mono"
+                      placeholder="Write your article markdown content here..."
+                      rows={12}
+                    />
+                  </div>
+                </div>
+
+                <div className="flex justify-end gap-2 pt-2 border-t border-zinc-850">
+                  <button
+                    type="button"
+                    onClick={() => setBlogEditId(null)}
+                    className="btn-ghost !py-1 px-3 text-xs border-zinc-850 hover:bg-zinc-900"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    onClick={saveBlog}
+                    className="btn-primary !py-1 px-4 text-xs"
+                  >
+                    Publish Post
+                  </button>
+                </div>
+              </div>
+            ) : null}
+
+            {/* List of articles */}
+            {blogEditId === null && (
+              <div className="space-y-3">
+                {postsLoading ? (
+                  <div className="flex justify-center items-center py-12">
+                    <div className="loading-spinner !w-6 !h-6" />
+                  </div>
+                ) : posts.map((post) => (
+                  <div key={post.id} className="flex items-center justify-between p-4 border border-zinc-850 rounded-xl bg-zinc-950 hover:border-zinc-800 transition-all font-sans">
+                    <div className="min-w-0 pr-4">
+                      <h4 className="text-sm font-semibold text-white truncate">{post.title}</h4>
+                      <p className="text-[10px] text-zinc-550 truncate mt-0.5">
+                        {post.summary || 'No summary compiled.'}
+                      </p>
+                      <span className="text-[8px] text-zinc-650 font-mono uppercase tracking-wider mt-1.5 inline-block">
+                        Published: {new Date(post.published_at).toLocaleDateString()}
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <button
+                        type="button"
+                        onClick={() => startEditBlog(post)}
+                        className="p-1.5 rounded hover:bg-zinc-900 text-zinc-400 hover:text-white"
+                        title="Edit Article"
+                      >
+                        <Edit3 size={14} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => deleteBlog(post.id)}
+                        className="p-1.5 rounded hover:bg-red-500/10 text-red-400 hover:text-red-300"
+                        title="Delete Article"
+                      >
+                        <Trash2 size={14} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+
+                {!postsLoading && posts.length === 0 && (
+                  <div className="p-12 border border-dashed border-zinc-850 rounded-xl text-center text-zinc-650 text-xs">
+                    No articles published yet. Click &quot;Add Article&quot; to compile your first post.
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
+

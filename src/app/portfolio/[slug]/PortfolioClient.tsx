@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Terminal } from 'lucide-react';
 import type { Profile } from '@/types/database.types';
 import BackgroundSwitcher from '@/components/portfolio/BackgroundSwitcher';
 import HeroSection from '@/components/portfolio/HeroSection';
@@ -11,12 +12,18 @@ import SocialLinks from '@/components/portfolio/SocialLinks';
 import Footer from '@/components/portfolio/Footer';
 import ExperienceTimeline from '@/components/portfolio/ExperienceTimeline';
 import TestimonialsSection from '@/components/portfolio/TestimonialsSection';
+import TerminalModal from '@/components/portfolio/TerminalModal';
+import GuestbookSection from '@/components/portfolio/GuestbookSection';
+import StatsDisplay from '@/components/portfolio/StatsDisplay';
+import { playSound } from '@/utils/sound';
 
 interface PortfolioClientProps {
   profile: Profile;
 }
 
 export default function PortfolioClient({ profile }: PortfolioClientProps) {
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
+
   const {
     animation_style = 'fade',
     animation_speed = 'normal',
@@ -25,14 +32,20 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
     custom_font = 'Plus Jakarta Sans',
     experiences = [],
     testimonials = [],
-    theme_color = '#6366f1'
+    theme_color = '#6366f1',
+    github_username = '',
+    show_terminal_toggle = true,
+    sound_effects_enabled = false,
   } = profile;
+
 
   const themeColor = theme_color;
   const fontName = custom_font;
   const layout = layout_variant;
   const animationStyle = animation_style;
   const speed = animation_speed;
+  const soundEnabled = sound_effects_enabled;
+
 
   // 1. Dynamic Font Injection
   useEffect(() => {
@@ -108,9 +121,13 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
               <ExperienceTimeline experiences={profile.experiences} themeColor={themeColor} />
             )}
             <ProjectShowcase projects={profile.projects || []} themeColor={themeColor} />
+            {github_username && (
+              <StatsDisplay githubUsername={github_username} themeColor={themeColor} soundEnabled={soundEnabled} />
+            )}
             {profile.testimonials && profile.testimonials.length > 0 && (
               <TestimonialsSection testimonials={profile.testimonials} themeColor={themeColor} />
             )}
+            <GuestbookSection profileId={profile.id} themeColor={themeColor} soundEnabled={soundEnabled} />
             <SocialLinks links={profile.social_links || []} themeColor={themeColor} />
             <Footer name={profile.full_name} themeColor={themeColor} />
           </main>
@@ -137,11 +154,19 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
                 <ProjectShowcase projects={profile.projects} themeColor={themeColor} />
               </div>
             )}
+            {github_username && (
+              <div className="pt-16">
+                <StatsDisplay githubUsername={github_username} themeColor={themeColor} soundEnabled={soundEnabled} />
+              </div>
+            )}
             {profile.testimonials && profile.testimonials.length > 0 && (
               <div className="pt-16">
                 <TestimonialsSection testimonials={profile.testimonials} themeColor={themeColor} />
               </div>
             )}
+            <div className="pt-16">
+              <GuestbookSection profileId={profile.id} themeColor={themeColor} soundEnabled={soundEnabled} />
+            </div>
             <div className="pt-16">
               <SocialLinks links={profile.social_links || []} themeColor={themeColor} />
             </div>
@@ -204,6 +229,22 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
                 </div>
               )}
 
+              {/* Grid block 7: GitHub Stats */}
+              {github_username && (
+                <div className="lg:col-span-1">
+                  <BentoCard themeColor={themeColor} title="External Operations // GitHub Stats">
+                    <StatsDisplay githubUsername={github_username} themeColor={themeColor} soundEnabled={soundEnabled} />
+                  </BentoCard>
+                </div>
+              )}
+
+              {/* Grid block 8: Real-Time Guestbook */}
+              <div className="lg:col-span-2">
+                <BentoCard themeColor={themeColor} title="Transmission Registry // Guestbook">
+                  <GuestbookSection profileId={profile.id} themeColor={themeColor} soundEnabled={soundEnabled} />
+                </BentoCard>
+              </div>
+
             </div>
             
             <div className="mt-12 text-center">
@@ -229,9 +270,38 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
           </main>
         )}
       </motion.div>
+
+      {/* Floating Action Button for Retro Terminal */}
+      {show_terminal_toggle && (
+        <button
+          onClick={() => {
+            playSound('click', soundEnabled);
+            setIsTerminalOpen(true);
+          }}
+          className="fixed bottom-6 right-6 z-40 p-4 rounded-full text-white shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
+          style={{
+            background: `linear-gradient(135deg, ${themeColor}, #8b5cf6)`,
+            boxShadow: `0 8px 30px -5px ${themeColor}60`,
+          }}
+          title="Open Portfolio CLI Terminal"
+        >
+          <Terminal size={22} />
+        </button>
+      )}
+
+      {/* Retro Interactive Terminal overlay */}
+      <AnimatePresence>
+        {isTerminalOpen && (
+          <TerminalModal
+            profile={profile}
+            onClose={() => setIsTerminalOpen(false)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
+
 
 /* ============================================================
    BENTO GRID CARD COMPONENT

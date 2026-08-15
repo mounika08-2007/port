@@ -2,7 +2,8 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { createClient } from '@/lib/supabase';
-import { Save, Upload, User, ExternalLink } from 'lucide-react';
+import { Save, Upload, User, ExternalLink, Trash2 } from 'lucide-react';
+
 import type { Profile } from '@/types/database.types';
 
 export default function AdminProfilePage() {
@@ -182,19 +183,35 @@ export default function AdminProfilePage() {
             </div>
           </div>
           <div>
-            <label className="btn-ghost cursor-pointer">
-              <Upload size={16} />
-              {uploading ? 'Uploading...' : 'Upload Avatar'}
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleAvatarUpload}
-                className="hidden"
-                disabled={uploading}
-              />
-            </label>
-            <p className="text-slate-600 text-xs mt-2">JPG, PNG or WebP. Max 2MB.</p>
+            <div className="flex flex-wrap gap-2.5">
+              <label className="btn-ghost cursor-pointer select-none">
+                <Upload size={16} />
+                {uploading ? 'Uploading...' : 'Upload Avatar'}
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleAvatarUpload}
+                  className="hidden"
+                  disabled={uploading}
+                />
+              </label>
+              {profile.avatar_url && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setProfile((prev) => ({ ...prev, avatar_url: '' }));
+                    setMessage({ type: 'success', text: 'Avatar removed locally. Remember to click "Save Profile" to apply changes.' });
+                  }}
+                  className="btn-ghost !text-red-400 hover:!bg-red-500/10 border-red-500/20 hover:border-red-500/30 flex items-center gap-1.5"
+                >
+                  <Trash2 size={16} />
+                  Delete Avatar
+                </button>
+              )}
+            </div>
+            <p className="text-slate-650 text-xs mt-2.5">JPG, PNG or WebP. Max 2MB.</p>
           </div>
+
         </div>
 
         {/* Fields Grid */}

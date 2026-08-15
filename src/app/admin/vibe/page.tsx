@@ -19,8 +19,13 @@ export default function AdminVibePage() {
     custom_font: 'Plus Jakarta Sans',
     experiences: [],
     testimonials: [],
-    theme_color: '#6366f1'
+    theme_color: '#6366f1',
+    github_username: '',
+    show_terminal_toggle: true,
+    sound_effects_enabled: false,
+    custom_terminal_welcome: 'Type "help" to view available commands...',
   });
+
 
   const loadProfile = useCallback(async () => {
     const {
@@ -65,9 +70,14 @@ export default function AdminVibePage() {
         layout_variant: updatedProfile.layout_variant,
         custom_font: updatedProfile.custom_font,
         experiences: updatedProfile.experiences,
-        testimonials: updatedProfile.testimonials
+        testimonials: updatedProfile.testimonials,
+        github_username: updatedProfile.github_username,
+        show_terminal_toggle: updatedProfile.show_terminal_toggle,
+        sound_effects_enabled: updatedProfile.sound_effects_enabled,
+        custom_terminal_welcome: updatedProfile.custom_terminal_welcome,
       })
       .eq('user_id', user.id);
+
 
     if (error) {
       setMessage({ type: 'error', text: error.message });
