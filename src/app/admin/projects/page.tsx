@@ -139,7 +139,7 @@ export default function AdminProjectsPage() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-bold gradient-text">Projects</h1>
-          <p className="text-slate-500 text-sm mt-1">
+          <p className="text-[#536471] text-sm mt-1">
             Manage your portfolio projects
           </p>
         </div>
@@ -165,7 +165,7 @@ export default function AdminProjectsPage() {
       {/* No profile warning */}
       {!profileId && (
         <div className="glass-card-static p-8 text-center">
-          <p className="text-slate-400">
+          <p className="text-[#536471]">
             Please set up your profile first before adding projects.
           </p>
         </div>
@@ -185,7 +185,7 @@ export default function AdminProjectsPage() {
 
                 {/* Image */}
                 <div className="shrink-0">
-                  <div className="w-24 h-24 rounded-lg overflow-hidden border border-white/10 bg-white/5 relative group">
+                  <div className="w-24 h-24 rounded-lg overflow-hidden border border-[#d8e7f0] bg-[#ffffff] relative group">
                     {project.image_url ? (
                       <img
                         src={project.image_url}
@@ -197,7 +197,7 @@ export default function AdminProjectsPage() {
                         📁
                       </div>
                     )}
-                    <label className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center cursor-pointer transition-opacity">
+                    <label className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 flex items-center justify-center cursor-pointer transition-opacity">
                       <Upload size={18} className="text-white" />
                       <input
                         type="file"
@@ -315,10 +315,10 @@ export default function AdminProjectsPage() {
           {projects.length === 0 && (
             <div className="glass-card-static p-12 text-center">
               <FolderIcon />
-              <h3 className="text-lg font-semibold text-slate-400 mt-4 mb-2">
+              <h3 className="text-lg font-semibold text-[#0f1419] mt-4 mb-2">
                 No projects yet
               </h3>
-              <p className="text-slate-500 text-sm mb-4">
+              <p className="text-[#536471] text-sm mb-4">
                 Add your first project to showcase in your portfolio.
               </p>
               <button onClick={addProject} className="btn-primary">
@@ -335,7 +335,7 @@ export default function AdminProjectsPage() {
 
 function FolderIcon() {
   return (
-    <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto">
+    <div className="w-16 h-16 rounded-2xl bg-[#ebf3f3] border border-[#d8e7f0] flex items-center justify-center mx-auto">
       <span className="text-3xl">📁</span>
     </div>
   );

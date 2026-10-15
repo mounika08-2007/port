@@ -20,7 +20,7 @@ CREATE TABLE public.profiles (
   avatar_url text DEFAULT '',
   bio text DEFAULT '',
   resume_url text DEFAULT '',
-  theme_color text DEFAULT '#6366f1',
+  theme_color text DEFAULT '#1c9cf0',
   created_at timestamptz DEFAULT now()
 );
 
@@ -156,7 +156,7 @@ VALUES (
   'Meharaj',
   'Full-Stack Developer',
   'Passionate full-stack developer with a keen eye for building scalable web applications. I love turning complex problems into elegant, user-friendly solutions. Experienced in modern JavaScript frameworks, cloud infrastructure, and agile development practices.',
-  '#6366f1'
+  '#1c9cf0'
 );
 
 -- MOUNIKA

@@ -61,7 +61,7 @@ export default function SocialLinks({ links, themeColor }: SocialLinksProps) {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-3 px-5 py-3 glass-card-static hover:border-white/20 transition-all duration-300 hover:scale-105 hover:bg-white/5"
+                className="group flex items-center gap-3 px-5 py-3 glass-card-static hover:border-[#1da1f2] transition-all duration-300 hover:scale-105 hover:bg-[#ffffff] border-[#d8e7f0] bg-[#ebf3f3] shadow-xs"
                 style={{
                   borderRadius: '0.85rem',
                 }}
@@ -71,7 +71,7 @@ export default function SocialLinks({ links, themeColor }: SocialLinksProps) {
                   className="transition-colors duration-300"
                   style={{ color: themeColor }}
                 />
-                <span className="text-sm font-medium text-slate-300 group-hover:text-white transition-colors">
+                <span className="text-sm font-medium text-[#0f1419] group-hover:text-[#137cc2] transition-colors">
                   {link.platform}
                 </span>
               </a>

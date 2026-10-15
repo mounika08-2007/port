@@ -44,7 +44,7 @@ export default function AdminLoginPage() {
           style={{
             width: '500px',
             height: '500px',
-            background: 'radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(28,156,240,0.2) 0%, transparent 70%)',
             top: '-15%',
             right: '-10%',
           }}
@@ -54,7 +54,7 @@ export default function AdminLoginPage() {
           style={{
             width: '400px',
             height: '400px',
-            background: 'radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)',
             bottom: '5%',
             left: '-10%',
           }}
@@ -64,12 +64,12 @@ export default function AdminLoginPage() {
       <div className="relative z-10 w-full max-w-md">
         {/* Logo / Heading */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-slate-400 mb-6">
-            <Sparkles size={14} className="text-indigo-400" />
-            Admin Panel
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E3ECF6] border border-[#d8e7f0] text-sm text-[#137cc2] mb-6">
+            <Sparkles size={14} className="text-[#137cc2]" />
+            Persona Flow Login
           </div>
           <h1 className="text-3xl font-bold gradient-text mb-2">Welcome Back</h1>
-          <p className="text-slate-500">Sign in to manage your portfolio</p>
+          <p className="text-[#536471]">Sign in to manage your portfolio</p>
         </div>
 
         {/* Login Card */}
@@ -77,7 +77,7 @@ export default function AdminLoginPage() {
           <form onSubmit={handleLogin} className="space-y-5">
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-slate-400 mb-2">
+              <label htmlFor="email" className="block text-sm font-semibold text-[#0f1419] mb-2">
                 Email Address
               </label>
               <input
@@ -93,7 +93,7 @@ export default function AdminLoginPage() {
 
             {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-slate-400 mb-2">
+              <label htmlFor="password" className="block text-sm font-semibold text-[#0f1419] mb-2">
                 Password
               </label>
               <div className="relative">
@@ -141,11 +141,11 @@ export default function AdminLoginPage() {
           </form>
           {/* Signup link */}
           <div className="mt-6 text-center">
-            <p className="text-slate-500 text-sm">
+            <p className="text-[#536471] text-sm">
               Don&apos;t have an account?{' '}
               <Link
                 href="/admin/signup"
-                className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
+                className="text-sky-400 hover:text-sky-300 font-medium transition-colors"
               >
                 Sign Up
               </Link>

@@ -37,75 +37,85 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
     custom_font = 'Plus Jakarta Sans',
     experiences = [],
     testimonials = [],
-    theme_color = '#6366f1',
+    theme_color,
     github_username = '',
     show_terminal_toggle = true,
     sound_effects_enabled = false,
   } = profile;
 
+  // Sky Vivid brand color resolution (#137cc2 is official Sky Vivid light primary)
+  const resolvedDefaultColor = !theme_color || theme_color === '#6366f1' ? '#137cc2' : theme_color;
+
   // Overridable theme styles
   const [layout, setLayout] = useState(layout_variant);
-  const [themeColor, setThemeColor] = useState(theme_color);
+  const [themeColor, setThemeColor] = useState(resolvedDefaultColor);
   const [fontName, setFontName] = useState(custom_font);
   const [backgroundEffect, setBackgroundEffect] = useState<'mesh-gradient' | 'particles' | 'matrix' | 'aurora' | 'cyber-grid' | 'none'>(background_effect as any);
   const [animationStyle, setAnimationStyle] = useState<'fade' | 'slide-up' | 'glitch' | 'liquid-reveal' | 'blur-reveal' | 'rotate-in'>(animation_style as any);
 
-  const [themeMode, setThemeMode] = useState<'dark' | 'light'>('dark');
+  const [themeMode, setThemeMode] = useState<'dark' | 'light'>('light');
 
   const speed = animation_speed;
   const soundEnabled = sound_effects_enabled;
 
   const applyPreset = (presetName: string) => {
     playSound('click', soundEnabled);
-    if (presetName === 'glassmorphism') {
+    if (presetName === 'sky-vivid') {
       setLayout('classic');
-      setThemeColor('#6366f1');
-      setFontName('Plus Jakarta Sans');
+      setThemeColor('#137cc2');
+      setFontName('Open Sans');
       setBackgroundEffect('mesh-gradient');
       setAnimationStyle('fade');
-      setThemeMode('dark');
+      setThemeMode('light');
+    } else if (presetName === 'glassmorphism') {
+      setLayout('classic');
+      setThemeColor('#137cc2');
+      setFontName('Open Sans');
+      setBackgroundEffect('mesh-gradient');
+      setAnimationStyle('fade');
+      setThemeMode('light');
     } else if (presetName === 'clean-light') {
       setLayout('minimalist');
-      setThemeColor('#3b82f6');
-      setFontName('Plus Jakarta Sans');
+      setThemeColor('#137cc2');
+      setFontName('Open Sans');
       setBackgroundEffect('none');
       setAnimationStyle('fade');
       setThemeMode('light');
     } else if (presetName === 'retro-terminal') {
       setLayout('minimalist');
-      setThemeColor('#10b981');
+      setThemeColor('#1da1f2');
       setFontName('Courier New');
       setBackgroundEffect('none');
       setAnimationStyle('slide-up');
-      setThemeMode('dark');
+      setThemeMode('light');
     } else if (presetName === 'matrix-tech') {
       setLayout('cyberpunk-grid');
-      setThemeColor('#22c55e');
+      setThemeColor('#1e9df1');
       setFontName('Courier New');
       setBackgroundEffect('matrix');
       setAnimationStyle('glitch');
-      setThemeMode('dark');
+      setThemeMode('light');
     } else if (presetName === 'cyberpunk-neon') {
       setLayout('cyberpunk-grid');
-      setThemeColor('#ec4899');
-      setFontName('Plus Jakarta Sans');
+      setThemeColor('#137cc2');
+      setFontName('Open Sans');
       setBackgroundEffect('cyber-grid');
       setAnimationStyle('glitch');
-      setThemeMode('dark');
+      setThemeMode('light');
     } else if (presetName === 'aurora-glow') {
       setLayout('classic');
-      setThemeColor('#8b5cf6');
-      setFontName('Plus Jakarta Sans');
+      setThemeColor('#137cc2');
+      setFontName('Open Sans');
       setBackgroundEffect('aurora');
       setAnimationStyle('blur-reveal');
-      setThemeMode('dark');
+      setThemeMode('light');
     } else {
       setLayout(layout_variant);
-      setThemeColor(theme_color);
+      setThemeColor(resolvedDefaultColor);
       setFontName(custom_font);
       setBackgroundEffect(background_effect);
       setAnimationStyle(animation_style);
-      setThemeMode('dark');
+      setThemeMode('light');
     }
   };
 
@@ -212,7 +222,7 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
 
         {/* LAYOUT B: MINIMALIST COLUMN */}
         {layout === 'minimalist' && (
-          <main className="max-w-3xl mx-auto px-6 py-24 space-y-16 divide-y divide-white/5">
+          <main className="max-w-3xl mx-auto px-6 py-24 space-y-16 divide-y divide-[#d8e7f0]">
             <div className="pb-8">
               <HeroSection profile={profile} />
             </div>
@@ -377,7 +387,7 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
             playSound('click', soundEnabled);
             setShowPresetsMenu(!showPresetsMenu);
           }}
-          className="p-3.5 rounded-full text-white shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer bg-zinc-950/80 border border-zinc-850"
+          className="p-3.5 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer bg-[#ffffff] border border-[#d8e7f0] hover:bg-[#E3ECF6]"
           style={{
             boxShadow: `0 4px 20px -3px ${themeColor}30`,
           }}
@@ -394,21 +404,21 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
               transition={{ duration: 0.15 }}
-              className="absolute right-0 mt-3 w-56 bg-zinc-950 border border-zinc-850 rounded-xl shadow-2xl p-2.5 space-y-1.5"
+              className="absolute right-0 mt-3 w-56 bg-[#ffffff] border border-[#d8e7f0] rounded-xl shadow-xl p-2.5 space-y-1.5"
             >
-              <div className="px-2 py-1 border-b border-zinc-900 pb-1.5 mb-1">
-                <h4 className="text-[10px] font-bold text-zinc-550 uppercase tracking-wider">Visual Presets</h4>
+              <div className="px-2 py-1 border-b border-[#d8e7f0] pb-1.5 mb-1">
+                <h4 className="text-[10px] font-bold text-[#536471] uppercase tracking-wider">Visual Presets</h4>
               </div>
               {[
-                { id: 'default', label: '🔄 Profile Defaults', style: 'border-zinc-850 hover:bg-zinc-900 text-zinc-400' },
-                { id: 'glassmorphism', label: '🎨 Sleek Glassmorphism (Dark)', style: 'border-indigo-900/20 hover:bg-indigo-950/20 text-indigo-300 font-semibold' },
-                { id: 'clean-light', label: '☀️ Clean Minimalist (Light)', style: 'border-blue-900/20 hover:bg-blue-950/20 text-blue-400 font-semibold' },
-                { id: 'retro-terminal', label: '📟 Retro Terminal (Dark)', style: 'border-emerald-900/20 hover:bg-emerald-950/20 text-emerald-300 font-semibold' },
-                { id: 'matrix-tech', label: '🔌 Matrix Tech Grid (Dark)', style: 'border-green-900/20 hover:bg-green-950/20 text-green-300 font-semibold' },
-                { id: 'cyberpunk-neon', label: '⚡ Cyberpunk Pink (Dark)', style: 'border-pink-900/20 hover:bg-pink-950/20 text-pink-300 font-semibold' },
-                { id: 'aurora-glow', label: '🌌 Aurora Glow (Dark)', style: 'border-purple-900/20 hover:bg-purple-950/20 text-purple-300 font-semibold' }
+                { id: 'sky-vivid', label: '⚡ Sky Vivid (Official 21st.dev)', style: 'border-[#137cc2] bg-[#E3ECF6] text-[#137cc2] font-bold' },
+                { id: 'glassmorphism', label: '🎨 Sky Glassmorphism', style: 'border-[#d8e7f0] hover:bg-[#E3ECF6] text-[#0f1419] font-medium' },
+                { id: 'clean-light', label: '☀️ Clean Minimalist (Light)', style: 'border-[#d8e7f0] hover:bg-[#E3ECF6] text-[#0f1419] font-medium' },
+                { id: 'retro-terminal', label: '📟 Retro Terminal', style: 'border-[#d8e7f0] hover:bg-[#E3ECF6] text-[#0f1419] font-medium' },
+                { id: 'matrix-tech', label: '🔌 Matrix Tech Grid', style: 'border-[#d8e7f0] hover:bg-[#E3ECF6] text-[#0f1419] font-medium' },
+                { id: 'cyberpunk-neon', label: '⚡ Cyber Grid Sky', style: 'border-[#d8e7f0] hover:bg-[#E3ECF6] text-[#0f1419] font-medium' },
+                { id: 'aurora-glow', label: '🌌 Aurora Sky Glow', style: 'border-[#d8e7f0] hover:bg-[#E3ECF6] text-[#0f1419] font-medium' },
+                { id: 'default', label: '🔄 Profile Defaults', style: 'border-[#d8e7f0] hover:bg-[#E3ECF6] text-[#536471]' }
               ].map(preset => (
-
                 <button
                   key={preset.id}
                   type="button"
@@ -435,7 +445,7 @@ export default function PortfolioClient({ profile }: PortfolioClientProps) {
           }}
           className="fixed bottom-6 right-6 z-40 p-4 rounded-full text-white shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
           style={{
-            background: `linear-gradient(135deg, ${themeColor}, #8b5cf6)`,
+            background: `linear-gradient(135deg, ${themeColor}, #0ea5e9)`,
             boxShadow: `0 8px 30px -5px ${themeColor}60`,
           }}
           title="Open Portfolio CLI Terminal"
@@ -482,10 +492,9 @@ function BentoCard({
 }) {
   return (
     <div
-      className={`glass-card-static p-6 md:p-8 relative overflow-hidden border transition-all duration-300 hover:border-white/15 h-full ${className}`}
+      className={`glass-card-static p-6 md:p-8 relative overflow-hidden border border-[#d8e7f0] bg-[#ebf3f3] transition-all duration-300 hover:border-[#1da1f2] hover:bg-[#ffffff] h-full ${className}`}
       style={{
-        boxShadow: `0 0 35px -12px ${themeColor}20`,
-        borderColor: `${themeColor}20`,
+        boxShadow: `0 4px 20px -3px rgba(19, 124, 194, 0.08)`,
       }}
     >
       {/* Glowing cyberpunk corners */}
@@ -495,12 +504,12 @@ function BentoCard({
       <div className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2" style={{ borderColor: themeColor }} />
 
       {title && (
-        <div className="mb-6 flex items-center justify-between border-b border-white/5 pb-3">
-          <h3 className="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center gap-2">
+        <div className="mb-6 flex items-center justify-between border-b border-[#d8e7f0] pb-3">
+          <h3 className="text-xs font-mono uppercase tracking-wider text-[#0f1419] font-bold flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: themeColor }} />
             {title}
           </h3>
-          <span className="text-[9px] font-mono text-slate-600">ID_0x{Math.floor(Math.random() * 899 + 100)}</span>
+          <span className="text-[9px] font-mono text-[#536471]">ID_0x{Math.floor(Math.random() * 899 + 100)}</span>
         </div>
       )}
       <div className="h-full">{children}</div>

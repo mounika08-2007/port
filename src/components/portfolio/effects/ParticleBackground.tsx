@@ -6,7 +6,7 @@ interface ParticleBackgroundProps {
   themeColor?: string;
 }
 
-export default function ParticleBackground({ themeColor = '#9333ea' }: ParticleBackgroundProps) {
+export default function ParticleBackground({ themeColor = '#1c9cf0' }: ParticleBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -38,14 +38,14 @@ export default function ParticleBackground({ themeColor = '#9333ea' }: ParticleB
       const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(fullHex);
       return result
         ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}`
-        : '147, 51, 234'; // Default to purple rgb
+        : '28, 156, 240'; // Default to purple rgb
     };
 
     const rgbString = hexToRgb(themeColor);
 
     const render = () => {
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = `rgba(${rgbString}, 0.15)`; // Deep dynamic theme micro-glow
+      ctx.fillStyle = `rgba(${rgbString}, 0.35)`; // Sky vivid light particle color
       
       particles.forEach((p) => {
         p.x += p.vx;
@@ -77,5 +77,5 @@ export default function ParticleBackground({ themeColor = '#9333ea' }: ParticleB
     };
   }, [themeColor]);
 
-  return <canvas ref={canvasRef} className="fixed inset-0 -z-10 block pointer-events-none bg-[#09090b]" />;
+  return <canvas ref={canvasRef} className="fixed inset-0 -z-10 block pointer-events-none bg-[#ffffff]" />;
 }

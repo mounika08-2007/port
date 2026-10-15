@@ -108,7 +108,7 @@ export default function AdminSocialPage() {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold gradient-text">Social Links</h1>
-        <p className="text-slate-500 text-sm mt-1">
+        <p className="text-[#536471] text-sm mt-1">
           Add your social media and contact links
         </p>
       </div>
@@ -128,7 +128,7 @@ export default function AdminSocialPage() {
 
       {/* Add Link Form */}
       <div className="glass-card-static p-6 mb-8">
-        <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">
+        <h3 className="text-sm font-semibold text-[#0f1419] uppercase tracking-wider mb-4">
           Add New Link
         </h3>
         <div className="flex flex-wrap gap-3">
@@ -138,7 +138,7 @@ export default function AdminSocialPage() {
             className="glass-input !w-auto"
           >
             {PLATFORMS.map((p) => (
-              <option key={p} value={p} className="bg-[#0B0F19]">
+              <option key={p} value={p} className="bg-[#ffffff] text-[#0f1419]">
                 {p}
               </option>
             ))}
@@ -165,18 +165,18 @@ export default function AdminSocialPage() {
             key={link.id}
             className="glass-card-static p-4 flex items-center gap-4"
           >
-            <div className="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center shrink-0">
-              <Share2 size={18} className="text-indigo-400" />
+            <div className="w-10 h-10 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center shrink-0">
+              <Share2 size={18} className="text-sky-400" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-white">{link.platform}</p>
-              <p className="text-xs text-slate-500 truncate">{link.url}</p>
+              <p className="text-sm font-semibold text-[#0f1419]">{link.platform}</p>
+              <p className="text-xs text-[#536471] truncate">{link.url}</p>
             </div>
             <a
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-ghost !px-3 text-slate-400 hover:text-white"
+              className="btn-ghost !px-3 text-[#536471] hover:text-[#137cc2]"
               title="Open link"
             >
               ↗
@@ -193,13 +193,13 @@ export default function AdminSocialPage() {
 
         {links.length === 0 && (
           <div className="glass-card-static p-12 text-center">
-            <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 rounded-2xl bg-[#ebf3f3] border border-[#d8e7f0] flex items-center justify-center mx-auto mb-4">
               <Share2 size={28} className="text-slate-600" />
             </div>
-            <h3 className="text-lg font-semibold text-slate-400 mb-2">
+            <h3 className="text-lg font-semibold text-[#0f1419] mb-2">
               No social links yet
             </h3>
-            <p className="text-slate-500 text-sm">
+            <p className="text-[#536471] text-sm">
               Add your social profiles using the form above.
             </p>
           </div>

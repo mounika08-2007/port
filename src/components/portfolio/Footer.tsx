@@ -14,10 +14,10 @@ export default function Footer({ name, themeColor }: FooterProps) {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="relative z-10 px-6 py-10 border-t border-white/5"
+      className="relative z-10 px-6 py-10 border-t border-[#d8e7f0]"
     >
       <div className="max-w-5xl mx-auto text-center">
-        <p className="text-slate-500 text-sm">
+        <p className="text-[#536471] text-sm">
           © {new Date().getFullYear()}{' '}
           <span style={{ color: themeColor }} className="font-medium">
             {name}

@@ -74,12 +74,12 @@ export default function ProjectShowcase({ projects, themeColor }: ProjectShowcas
 
           {/* Live Search Input */}
           <div className="relative w-full md:max-w-xs shrink-0">
-            <Search className="absolute left-3.5 top-2.5 w-4.5 h-4.5 text-zinc-550" />
+            <Search className="absolute left-3.5 top-2.5 w-4.5 h-4.5 text-[#536471]" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="glass-input !pl-10 !py-2 text-xs bg-zinc-950/40 border border-zinc-850 focus:border-zinc-700"
+              className="glass-input !pl-10 !py-2 text-xs bg-[#ffffff] border border-[#d8e7f0] focus:border-[#1da1f2] text-[#0f1419] placeholder-[#536471]"
               placeholder="Search projects..."
             />
           </div>
@@ -97,8 +97,8 @@ export default function ProjectShowcase({ projects, themeColor }: ProjectShowcas
                   onClick={() => setSelectedTag(tag)}
                   className={`px-3 py-1 rounded-full text-xs font-semibold border transition-all duration-250 cursor-pointer ${
                     isActive
-                      ? 'bg-purple-600 border-purple-500/25 text-white'
-                      : 'border-zinc-850 hover:border-zinc-700 text-zinc-400 hover:text-white bg-zinc-950/20'
+                      ? 'bg-[#137cc2] border-[#137cc2] text-white shadow-sm shadow-[#137cc2]/20'
+                      : 'border-[#d8e7f0] hover:border-[#1da1f2] text-[#536471] hover:text-[#0f1419] bg-[#ffffff] hover:bg-[#E3ECF6]'
                   }`}
                 >
                   {tag}
@@ -121,7 +121,7 @@ export default function ProjectShowcase({ projects, themeColor }: ProjectShowcas
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
-                  className="glass-card group overflow-hidden flex flex-col h-full bg-[#0B0F19]/40 border border-white/5"
+                  className="glass-card group overflow-hidden flex flex-col h-full bg-[#ebf3f3] border border-[#d8e7f0] hover:bg-[#ffffff] hover:border-[#1da1f2]"
                 >
                   {/* Project Image */}
                   {project.image_url ? (
@@ -131,13 +131,13 @@ export default function ProjectShowcase({ projects, themeColor }: ProjectShowcas
                         alt={project.title}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#050508] via-transparent to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                     </div>
                   ) : (
                     <div
                       className="h-48 flex items-center justify-center relative overflow-hidden"
                       style={{
-                        background: `linear-gradient(135deg, ${themeColor}15, #8b5cf615)`,
+                        background: `linear-gradient(135deg, ${themeColor}15, #0ea5e915)`,
                       }}
                     >
                       <span className="text-5xl opacity-30 group-hover:scale-110 transition-transform duration-300">🚀</span>
@@ -146,11 +146,11 @@ export default function ProjectShowcase({ projects, themeColor }: ProjectShowcas
 
                   {/* Content */}
                   <div className="p-6 flex flex-col flex-1">
-                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
+                    <h3 className="text-lg font-bold text-[#0f1419] mb-2 group-hover:text-[#137cc2] transition-colors">
                       {project.title}
                     </h3>
                     
-                    <p className="text-slate-400 text-xs leading-relaxed mb-4 flex-1">
+                    <p className="text-[#536471] text-xs leading-relaxed mb-4 flex-1">
                       {project.description}
                     </p>
 
@@ -158,7 +158,7 @@ export default function ProjectShowcase({ projects, themeColor }: ProjectShowcas
                     {projectTags.length > 0 && (
                       <div className="flex flex-wrap gap-1.5 mb-4">
                         {projectTags.map(t => (
-                          <span key={t} className="text-[9px] font-mono font-semibold px-2 py-0.5 rounded bg-zinc-950/80 text-zinc-550 border border-zinc-900">
+                          <span key={t} className="text-[9px] font-mono font-semibold px-2 py-0.5 rounded bg-[#E3ECF6] text-[#137cc2] border border-[#d8e7f0]">
                             {t}
                           </span>
                         ))}
@@ -166,7 +166,7 @@ export default function ProjectShowcase({ projects, themeColor }: ProjectShowcas
                     )}
 
                     {/* Links */}
-                    <div className="flex gap-4 mt-auto border-t border-white/5 pt-4">
+                    <div className="flex gap-4 mt-auto border-t border-[#d8e7f0] pt-4">
                       {project.live_link && (
                         <a
                           href={project.live_link}
@@ -184,7 +184,7 @@ export default function ProjectShowcase({ projects, themeColor }: ProjectShowcas
                           href={project.github_link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-xs font-semibold text-slate-450 hover:text-white transition-colors duration-300"
+                          className="flex items-center gap-1.5 text-xs font-semibold text-[#536471] hover:text-[#0f1419] transition-colors duration-300"
                         >
                           <Code2 size={13} />
                           Source Code
@@ -200,9 +200,9 @@ export default function ProjectShowcase({ projects, themeColor }: ProjectShowcas
 
         {/* Empty state */}
         {filtered.length === 0 && (
-          <div className="text-center p-16 border border-dashed border-zinc-850 rounded-2xl bg-zinc-950/20">
-            <p className="text-zinc-500 text-sm">
-              No featured projects found matching &quot;<span className="text-white">{searchQuery || selectedTag}</span>&quot;.
+          <div className="text-center p-16 border border-dashed border-[#d8e7f0] rounded-2xl bg-[#ebf3f3]">
+            <p className="text-[#536471] text-sm">
+              No featured projects found matching &quot;<span className="text-[#0f1419] font-semibold">{searchQuery || selectedTag}</span>&quot;.
             </p>
           </div>
         )}

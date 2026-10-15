@@ -13,6 +13,9 @@ import {
   ChevronLeft,
   LayoutDashboard,
   Sliders,
+  Tag,
+  Globe,
+  ShieldCheck,
 } from 'lucide-react';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 
@@ -22,6 +25,9 @@ const navItems = [
   { href: '/admin/skills', label: 'Skills', icon: Zap },
   { href: '/admin/social', label: 'Social Links', icon: Share2 },
   { href: '/admin/vibe', label: 'Vibe & Experience', icon: Sliders },
+  { href: '/admin/packs', label: 'Theme Packs & Pricing', icon: Tag },
+  { href: '/admin/portfolios', label: 'User Portfolios', icon: Globe },
+  { href: '/admin/entitlements', label: 'Entitlements & Plans', icon: ShieldCheck },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -82,24 +88,24 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }
 
   return (
-    <div className="min-h-screen flex bg-[#050508]">
+    <div className="min-h-screen flex bg-[#f7f8f8] text-[#0f1419]">
       {/* Sidebar */}
       <aside
         className={`fixed top-0 left-0 h-full z-30 transition-all duration-300 ease-in-out ${
           sidebarOpen ? 'w-64' : 'w-20'
-        } border-r border-white/5 bg-[#0B0F19]/80 backdrop-blur-xl flex flex-col`}
+        } border-r border-[#e1e8ed] bg-[#ffffff] flex flex-col shadow-xs`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-5 border-b border-white/5">
+        <div className="flex items-center justify-between p-5 border-b border-[#e1e8ed]">
           {sidebarOpen && (
             <div className="flex items-center gap-2">
-              <LayoutDashboard size={20} className="text-indigo-400" />
-              <span className="text-sm font-bold text-white tracking-wide">ADMIN</span>
+              <LayoutDashboard size={20} className="text-sky-400" />
+              <span className="text-sm font-bold text-[#0f1419] tracking-wide">ADMIN</span>
             </div>
           )}
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-2 rounded-lg hover:bg-white/5 text-slate-400 hover:text-white transition-all"
+            className="p-2 rounded-lg hover:bg-[#E3ECF6] text-[#536471] hover:text-[#0f1419] transition-all"
           >
             <ChevronLeft
               size={18}
@@ -127,7 +133,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </nav>
 
         {/* Footer */}
-        <div className="p-3 border-t border-white/5">
+        <div className="p-3 border-t border-[#e1e8ed]">
           <Link href="/" className="sidebar-link mb-1" title="View Site">
             <ChevronLeft size={20} />
             {sidebarOpen && <span>View Site</span>}

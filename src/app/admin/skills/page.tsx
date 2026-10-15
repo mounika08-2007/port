@@ -103,7 +103,7 @@ export default function AdminSkillsPage() {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold gradient-text">Skills</h1>
-        <p className="text-slate-500 text-sm mt-1">
+        <p className="text-[#536471] text-sm mt-1">
           Add and organize your technical skills by category
         </p>
       </div>
@@ -123,7 +123,7 @@ export default function AdminSkillsPage() {
 
       {/* Add Skill Form */}
       <div className="glass-card-static p-6 mb-8">
-        <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">
+        <h3 className="text-sm font-semibold text-[#0f1419] uppercase tracking-wider mb-4">
           Add New Skill
         </h3>
         <div className="flex flex-wrap gap-3">
@@ -141,7 +141,7 @@ export default function AdminSkillsPage() {
             className="glass-input !w-auto"
           >
             {DEFAULT_CATEGORIES.map((cat) => (
-              <option key={cat} value={cat} className="bg-[#0B0F19]">
+              <option key={cat} value={cat} className="bg-[#ffffff] text-[#0f1419]">
                 {cat}
               </option>
             ))}
@@ -158,8 +158,8 @@ export default function AdminSkillsPage() {
         {Object.entries(grouped).map(([category, catSkills]) => (
           <div key={category} className="glass-card-static p-6">
             <div className="flex items-center gap-2 mb-4">
-              <Zap size={16} className="text-indigo-400" />
-              <h3 className="text-sm font-semibold text-indigo-400 uppercase tracking-wider">
+              <Zap size={16} className="text-sky-400" />
+              <h3 className="text-sm font-semibold text-sky-400 uppercase tracking-wider">
                 {category}
               </h3>
               <span className="text-xs text-slate-600 ml-1">
@@ -170,9 +170,9 @@ export default function AdminSkillsPage() {
               {catSkills.map((skill) => (
                 <div
                   key={skill.id}
-                  className="group flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-red-400/30 transition-all duration-200"
+                  className="group flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#E3ECF6] border border-[#d8e7f0] hover:border-red-400/30 transition-all duration-200"
                 >
-                  <span className="text-sm text-slate-300">{skill.skill_name}</span>
+                  <span className="text-sm text-[#0f1419] font-medium">{skill.skill_name}</span>
                   <button
                     onClick={() => deleteSkill(skill.id)}
                     className="opacity-0 group-hover:opacity-100 text-red-400 hover:text-red-300 transition-all"
@@ -187,11 +187,11 @@ export default function AdminSkillsPage() {
 
         {skills.length === 0 && (
           <div className="glass-card-static p-12 text-center">
-            <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 rounded-2xl bg-[#ebf3f3] border border-[#d8e7f0] flex items-center justify-center mx-auto mb-4">
               <Zap size={28} className="text-slate-600" />
             </div>
-            <h3 className="text-lg font-semibold text-slate-400 mb-2">No skills yet</h3>
-            <p className="text-slate-500 text-sm">
+            <h3 className="text-lg font-semibold text-[#0f1419] mb-2">No skills yet</h3>
+            <p className="text-[#536471] text-sm">
               Start adding your skills using the form above.
             </p>
           </div>

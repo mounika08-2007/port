@@ -33,7 +33,7 @@ export default function ExperienceTimeline({ experiences, themeColor }: Experien
         </motion.div>
 
         {/* Timeline Stack */}
-        <div className="relative border-l border-white/10 pl-6 md:pl-8 ml-4 md:ml-6 space-y-12">
+        <div className="relative border-l-2 border-[#d8e7f0] pl-6 md:pl-8 ml-4 md:ml-6 space-y-12">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
@@ -45,7 +45,7 @@ export default function ExperienceTimeline({ experiences, themeColor }: Experien
             >
               {/* Timeline Icon Node */}
               <div
-                className="absolute -left-[39px] md:-left-[47px] top-1 w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-[#050508] flex items-center justify-center text-white"
+                className="absolute -left-[39px] md:-left-[47px] top-1 w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-[#ffffff] flex items-center justify-center text-white"
                 style={{
                   backgroundColor: themeColor,
                   boxShadow: `0 0 15px ${themeColor}60`,
@@ -55,22 +55,22 @@ export default function ExperienceTimeline({ experiences, themeColor }: Experien
               </div>
 
               {/* Card Container */}
-              <div className="glass-card-static p-6 md:p-8 hover:border-white/15 hover:bg-white/5 transition-all duration-300">
+              <div className="glass-card-static p-6 md:p-8 hover:border-[#1da1f2] hover:bg-[#ffffff] transition-all duration-300 bg-[#ebf3f3] border border-[#d8e7f0] shadow-xs">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
                   <div>
-                    <h3 className="text-xl font-bold text-white tracking-tight">{exp.role}</h3>
+                    <h3 className="text-xl font-bold text-[#0f1419] tracking-tight">{exp.role}</h3>
                     <p className="text-sm font-semibold transition-colors duration-200 mt-0.5" style={{ color: themeColor }}>
                       {exp.company}
                     </p>
                   </div>
-                  <span className="inline-block px-3.5 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-slate-300 self-start md:self-center">
+                  <span className="inline-block px-3.5 py-1 rounded-full text-xs font-semibold bg-[#E3ECF6] border border-[#d8e7f0] text-[#137cc2] self-start md:self-center">
                     {exp.duration}
                   </span>
                 </div>
 
                 {/* Bullet Points */}
                 {exp.bullet_points && exp.bullet_points.length > 0 && (
-                  <ul className="space-y-3.5 text-slate-400 text-sm md:text-[0.925rem] leading-relaxed">
+                  <ul className="space-y-3.5 text-[#536471] text-sm md:text-[0.925rem] leading-relaxed">
                     {exp.bullet_points.map((bullet, bIdx) => (
                       <li key={bIdx} className="flex gap-2.5 items-start">
                         <span 

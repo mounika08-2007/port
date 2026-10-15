@@ -78,18 +78,18 @@ export default function StatsDisplay({ githubUsername, themeColor, soundEnabled 
         </motion.div>
 
         {loading ? (
-          <div className="glass-card-static p-10 flex items-center justify-center border border-white/5">
+          <div className="glass-card-static p-10 flex items-center justify-center border border-[#d8e7f0] bg-[#ebf3f3]">
             <div className="loading-spinner !w-6 !h-6" />
           </div>
         ) : error || !stats ? (
           /* Graceful Fallback if api limit exceeded or error */
-          <div className="glass-card-static p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 border border-white/5 bg-zinc-950/40">
+          <div className="glass-card-static p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 border border-[#d8e7f0] bg-[#ebf3f3] shadow-xs">
             <div className="space-y-2 text-center md:text-left">
-              <h3 className="text-white font-bold text-lg flex items-center justify-center md:justify-start gap-2">
+              <h3 className="text-[#0f1419] font-bold text-lg flex items-center justify-center md:justify-start gap-2">
                 <GithubIcon size={20} className="text-zinc-500" />
                 @{githubUsername} GitHub Profile
               </h3>
-              <p className="text-xs text-slate-500 max-w-lg">
+              <p className="text-xs text-[#536471] max-w-lg">
                 We couldn&apos;t load the live API statistics right now, but you can view the public developer source logs directly on GitHub.
               </p>
             </div>
@@ -98,7 +98,7 @@ export default function StatsDisplay({ githubUsername, themeColor, soundEnabled 
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleStatsClick}
-              className="btn-ghost shrink-0 flex items-center gap-2 border-zinc-800 hover:bg-zinc-900"
+              className="btn-ghost shrink-0 flex items-center gap-2 border-[#d8e7f0] hover:bg-[#E3ECF6] text-[#0f1419]"
             >
               <ExternalLink size={14} />
               Open github.com
@@ -110,7 +110,7 @@ export default function StatsDisplay({ githubUsername, themeColor, soundEnabled 
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.5 }}
-            className="glass-card-static p-6 md:p-8 border border-white/5 hover:border-white/10 bg-zinc-950/40 relative overflow-hidden transition-all duration-300 group"
+            className="glass-card-static p-6 md:p-8 border border-[#d8e7f0] hover:border-[#1da1f2] bg-[#ebf3f3] relative overflow-hidden transition-all duration-300 group shadow-xs"
           >
             {/* Background glowing gradient */}
             <div
@@ -121,46 +121,46 @@ export default function StatsDisplay({ githubUsername, themeColor, soundEnabled 
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 relative z-10">
               {/* Profile Card */}
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-full overflow-hidden border border-white/10 shrink-0 bg-zinc-900">
+                <div className="w-16 h-16 rounded-full overflow-hidden border border-[#d8e7f0] shrink-0 bg-[#ffffff]">
                   <img src={stats.avatar_url} alt={stats.name} className="w-full h-full object-cover" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="text-white font-bold text-lg leading-tight">{stats.name || stats.login}</h3>
-                    <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-zinc-900 text-zinc-400 border border-zinc-850">
+                    <h3 className="text-[#0f1419] font-bold text-lg leading-tight">{stats.name || stats.login}</h3>
+                    <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-[#E3ECF6] text-[#137cc2] border border-[#d8e7f0]">
                       @{stats.login}
                     </span>
                   </div>
-                  <p className="text-xs text-slate-500 mt-1 max-w-sm leading-relaxed">
+                  <p className="text-xs text-[#536471] mt-1 max-w-sm leading-relaxed">
                     {stats.bio || 'Developer profile synced with GitHub API.'}
                   </p>
                 </div>
               </div>
 
               {/* Stats dashboard panel */}
-              <div className="grid grid-cols-2 md:flex items-center gap-5 w-full md:w-auto pt-4 md:pt-0 border-t md:border-t-0 border-zinc-900">
+              <div className="grid grid-cols-2 md:flex items-center gap-5 w-full md:w-auto pt-4 md:pt-0 border-t md:border-t-0 border-[#d8e7f0]">
                 
                 {/* Repositories */}
-                <div className="flex items-center gap-3 p-3.5 border border-zinc-900/60 bg-zinc-950/50 rounded-xl md:min-w-[125px]">
-                  <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
+                <div className="flex items-center gap-3 p-3.5 border border-[#d8e7f0] bg-[#ffffff] rounded-xl md:min-w-[125px] shadow-xs">
+                  <div className="p-2 rounded-lg bg-[#E3ECF6] text-[#137cc2]">
                     <FolderGit2 size={16} />
                   </div>
                   <div>
-                    <span className="text-[9px] text-zinc-550 uppercase font-mono font-bold tracking-wider">Repos</span>
-                    <h4 className="text-base md:text-lg text-white font-extrabold leading-none mt-1 font-mono">
+                    <span className="text-[9px] text-[#536471] uppercase font-mono font-bold tracking-wider">Repos</span>
+                    <h4 className="text-base md:text-lg text-[#0f1419] font-extrabold leading-none mt-1 font-mono">
                       {stats.public_repos}
                     </h4>
                   </div>
                 </div>
 
                 {/* Followers */}
-                <div className="flex items-center gap-3 p-3.5 border border-zinc-900/60 bg-zinc-950/50 rounded-xl md:min-w-[125px]">
-                  <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400">
+                <div className="flex items-center gap-3 p-3.5 border border-[#d8e7f0] bg-[#ffffff] rounded-xl md:min-w-[125px] shadow-xs">
+                  <div className="p-2 rounded-lg bg-[#E3ECF6] text-[#00b87a]">
                     <Users2 size={16} />
                   </div>
                   <div>
-                    <span className="text-[9px] text-zinc-550 uppercase font-mono font-bold tracking-wider">Followers</span>
-                    <h4 className="text-base md:text-lg text-white font-extrabold leading-none mt-1 font-mono">
+                    <span className="text-[9px] text-[#536471] uppercase font-mono font-bold tracking-wider">Followers</span>
+                    <h4 className="text-base md:text-lg text-[#0f1419] font-extrabold leading-none mt-1 font-mono">
                       {stats.followers}
                     </h4>
                   </div>
@@ -172,7 +172,7 @@ export default function StatsDisplay({ githubUsername, themeColor, soundEnabled 
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleStatsClick}
-                  className="col-span-2 md:col-span-1 p-3.5 border hover:border-zinc-700 bg-purple-500/10 hover:bg-purple-500/15 text-purple-400 hover:text-white rounded-xl flex items-center justify-center gap-2.5 transition-all text-sm font-semibold h-[60px]"
+                  className="col-span-2 md:col-span-1 p-3.5 border border-[#d8e7f0] hover:border-[#1da1f2] bg-[#E3ECF6] hover:bg-[#137cc2] text-[#137cc2] hover:text-white rounded-xl flex items-center justify-center gap-2.5 transition-all text-sm font-semibold h-[60px] shadow-xs"
                 >
                   <ExternalLink size={15} />
                   GitHub Log

@@ -37,7 +37,7 @@ export default function AuroraBackground({ themeColor }: AuroraBackgroundProps) 
         style={{
           width: 'min(80vw, 800px)',
           height: 'min(45vw, 450px)',
-          background: `radial-gradient(circle, #3b82f6 0%, transparent 80%)`,
+          background: `radial-gradient(circle, #0ea5e9 0%, transparent 80%)`,
           top: '-10%',
           right: '5%',
         }}
@@ -57,7 +57,7 @@ export default function AuroraBackground({ themeColor }: AuroraBackgroundProps) 
       <div 
         className="absolute -top-32 left-1/2 -translate-x-1/2 w-[70%] h-[200px] opacity-15 filter blur-[70px]"
         style={{
-          background: `linear-gradient(90deg, ${themeColor}, #8b5cf6, #3b82f6)`,
+          background: `linear-gradient(90deg, ${themeColor}, #0ea5e9, #38bdf8)`,
         }}
       />
     </div>

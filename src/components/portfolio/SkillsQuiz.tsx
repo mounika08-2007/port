@@ -188,12 +188,12 @@ export default function SkillsQuiz({ profile, themeColor, soundEnabled }: Skills
             <HelpCircle className="w-8 h-8" style={{ color: themeColor }} />
             Tech Stack Trivia Quiz
           </h2>
-          <p className="text-xs text-slate-500 max-w-md mx-auto">
+          <p className="text-xs text-[#536471] max-w-md mx-auto">
             Test your knowledge about my skills and experience stack! See if you can score a perfect 5/5.
           </p>
         </motion.div>
 
-        <div className="glass-card-static p-6 md:p-8 border border-white/5 bg-zinc-950/40 relative overflow-hidden">
+        <div className="glass-card-static p-6 md:p-8 border border-[#d8e7f0] bg-[#ebf3f3] relative overflow-hidden shadow-xs">
           <AnimatePresence mode="wait">
             {!quizFinished ? (
               <motion.div
@@ -205,13 +205,13 @@ export default function SkillsQuiz({ profile, themeColor, soundEnabled }: Skills
                 className="space-y-6"
               >
                 {/* Progress bar */}
-                <div className="flex justify-between items-center text-xs text-slate-500 font-mono">
+                <div className="flex justify-between items-center text-xs text-[#536471] font-mono">
                   <span>
                     Question {currentIdx + 1} of {questions.length}
                   </span>
                   <span>Score: {score}</span>
                 </div>
-                <div className="w-full bg-zinc-900 h-1.5 rounded-full overflow-hidden">
+                <div className="w-full bg-[#d8e7f0] h-1.5 rounded-full overflow-hidden">
                   <div
                     className="h-full rounded-full transition-all duration-300"
                     style={{
@@ -222,7 +222,7 @@ export default function SkillsQuiz({ profile, themeColor, soundEnabled }: Skills
                 </div>
 
                 {/* Question Text */}
-                <h3 className="text-lg font-bold text-white tracking-tight">{currentQ.questionText}</h3>
+                <h3 className="text-lg font-bold text-[#0f1419] tracking-tight">{currentQ.questionText}</h3>
 
                 {/* Options List */}
                 <div className="grid gap-3 mt-4">
@@ -232,7 +232,7 @@ export default function SkillsQuiz({ profile, themeColor, soundEnabled }: Skills
                     const showCorrectGreen = isAnswered && isCorrect;
                     const showWrongRed = isAnswered && isSelected && !isCorrect;
 
-                    let btnStyle = 'border-zinc-850 bg-zinc-950 hover:border-zinc-700 text-zinc-400';
+                    let btnStyle = 'border-[#d8e7f0] bg-[#ffffff] hover:border-[#1da1f2] hover:bg-[#E3ECF6] text-[#0f1419] shadow-xs';
                     let iconNode = null;
 
                     if (showCorrectGreen) {
@@ -242,7 +242,7 @@ export default function SkillsQuiz({ profile, themeColor, soundEnabled }: Skills
                       btnStyle = 'border-red-500 bg-red-500/10 text-red-400 font-bold';
                       iconNode = <XCircle size={16} className="text-red-500 shrink-0" />;
                     } else if (isAnswered) {
-                      btnStyle = 'border-zinc-900 bg-zinc-950/20 text-zinc-600 opacity-60';
+                      btnStyle = 'border-[#e1e8ed] bg-[#f7f8f8] text-[#8d9eb1] opacity-60';
                     }
 
                     return (
@@ -269,7 +269,7 @@ export default function SkillsQuiz({ profile, themeColor, soundEnabled }: Skills
                       onClick={handleNext}
                       className="btn-primary flex items-center gap-1.5"
                       style={{
-                        background: `linear-gradient(135deg, ${themeColor}, #8b5cf6)`,
+                        background: `linear-gradient(135deg, ${themeColor}, #0ea5e9)`,
                       }}
                     >
                       {currentIdx === questions.length - 1 ? 'Finish Quiz' : 'Next Question'}
@@ -288,7 +288,7 @@ export default function SkillsQuiz({ profile, themeColor, soundEnabled }: Skills
                 <div
                   className="w-16 h-16 rounded-full mx-auto flex items-center justify-center text-white"
                   style={{
-                    background: `linear-gradient(135deg, ${themeColor}, #8b5cf6)`,
+                    background: `linear-gradient(135deg, ${themeColor}, #0ea5e9)`,
                     boxShadow: `0 0 25px ${themeColor}60`,
                   }}
                 >
@@ -296,14 +296,14 @@ export default function SkillsQuiz({ profile, themeColor, soundEnabled }: Skills
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-2xl font-bold text-white">Quiz Completed!</h3>
-                  <p className="text-xs text-slate-400">
+                  <h3 className="text-2xl font-bold text-[#0f1419]">Quiz Completed!</h3>
+                  <p className="text-xs text-[#536471]">
                     You scored <strong style={{ color: themeColor }} className="text-sm">{score}</strong> out of{' '}
                     <strong>{questions.length}</strong> questions correctly.
                   </p>
                 </div>
 
-                <div className="text-zinc-400 text-sm max-w-sm mx-auto italic">
+                <div className="text-[#536471] text-sm max-w-sm mx-auto italic">
                   {score === questions.length
                     ? 'Incredible! You know my developer profile inside and out.'
                     : score >= 3
@@ -312,7 +312,7 @@ export default function SkillsQuiz({ profile, themeColor, soundEnabled }: Skills
                 </div>
 
                 <div className="flex justify-center pt-2">
-                  <button onClick={handleRestart} className="btn-ghost flex items-center gap-1.5 border-zinc-800">
+                  <button onClick={handleRestart} className="btn-ghost flex items-center gap-1.5 border-[#d8e7f0] text-[#0f1419] bg-[#ffffff] hover:bg-[#E3ECF6]">
                     <RotateCcw size={14} />
                     Restart Quiz
                   </button>

@@ -19,7 +19,7 @@ export default function AdminVibePage() {
     custom_font: 'Plus Jakarta Sans',
     experiences: [],
     testimonials: [],
-    theme_color: '#6366f1',
+    theme_color: '#1c9cf0',
     github_username: '',
     show_terminal_toggle: true,
     sound_effects_enabled: false,

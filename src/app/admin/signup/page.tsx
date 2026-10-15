@@ -93,7 +93,7 @@ export default function AdminSignupPage() {
         full_name: fullName,
         professional_title: '',
         bio: '',
-        theme_color: '#6366f1',
+        theme_color: '#1c9cf0',
       });
 
       if (profileError) {
@@ -135,7 +135,7 @@ export default function AdminSignupPage() {
             width: '400px',
             height: '400px',
             background:
-              'radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%)',
+              'radial-gradient(circle, rgba(28,156,240,0.15) 0%, transparent 70%)',
             bottom: '5%',
             left: '-10%',
           }}
@@ -145,12 +145,12 @@ export default function AdminSignupPage() {
       <div className="relative z-10 w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-slate-400 mb-6">
-            <Sparkles size={14} className="text-emerald-400" />
-            Join the Team
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E3ECF6] border border-[#d8e7f0] text-sm text-[#137cc2] mb-6">
+            <Sparkles size={14} className="text-[#137cc2]" />
+            Persona Flow Registration
           </div>
           <h1 className="text-3xl font-bold gradient-text mb-2">Create Account</h1>
-          <p className="text-slate-500">
+          <p className="text-[#536471]">
             Sign up to build and manage your portfolio
           </p>
         </div>
@@ -162,7 +162,7 @@ export default function AdminSignupPage() {
             <div>
               <label
                 htmlFor="fullName"
-                className="block text-sm font-medium text-slate-400 mb-2"
+                className="block text-sm font-semibold text-[#0f1419] mb-2"
               >
                 Full Name
               </label>
@@ -196,7 +196,7 @@ export default function AdminSignupPage() {
                 placeholder="e.g., meharaj"
                 required
               />
-              <p className="text-slate-600 text-xs mt-1">
+              <p className="text-[#536471] text-xs mt-1">
                 Your portfolio URL: /portfolio/{slug || 'your-slug'}
                 {' '}— If a seed profile exists with this slug, it will be linked to your account.
               </p>
@@ -277,7 +277,7 @@ export default function AdminSignupPage() {
 
             {/* Success */}
             {success && (
-              <div className="text-emerald-400 text-sm bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-4 py-3">
+              <div className="text-sky-400 text-sm bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-4 py-3">
                 {success}
               </div>
             )}
@@ -288,7 +288,7 @@ export default function AdminSignupPage() {
               disabled={loading}
               className="btn-primary w-full justify-center"
               style={{
-                background: 'linear-gradient(135deg, #10b981, #6366f1)',
+                background: 'linear-gradient(135deg, #1c9cf0, #0ea5e9)',
               }}
             >
               {loading ? (
@@ -304,11 +304,11 @@ export default function AdminSignupPage() {
 
           {/* Login link */}
           <div className="mt-6 text-center">
-            <p className="text-slate-500 text-sm">
+            <p className="text-[#536471] text-sm">
               Already have an account?{' '}
               <Link
                 href="/admin/login"
-                className="text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
+                className="text-sky-400 hover:text-sky-300 font-medium transition-colors"
               >
                 Sign In
               </Link>
@@ -320,7 +320,7 @@ export default function AdminSignupPage() {
         <div className="mt-6 text-center">
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-slate-600 hover:text-slate-400 text-sm transition-colors"
+            className="inline-flex items-center gap-1.5 text-[#536471] hover:text-[#137cc2] text-sm font-semibold transition-colors"
           >
             <ArrowLeft size={14} />
             Back to Home

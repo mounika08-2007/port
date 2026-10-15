@@ -9,7 +9,8 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({ profile }: HeroSectionProps) {
-  const themeColor = profile.theme_color || '#6366f1';
+  const rawTheme = profile.theme_color;
+  const themeColor = !rawTheme || rawTheme === '#6366f1' ? '#1c9cf0' : rawTheme;
 
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center px-6 py-20">
@@ -27,9 +28,9 @@ export default function HeroSection({ profile }: HeroSectionProps) {
             {/* Glow ring */}
             <div
               className="absolute -inset-1 rounded-full opacity-60 blur-md"
-              style={{ background: `linear-gradient(135deg, ${themeColor}, #8b5cf6)` }}
+              style={{ background: `linear-gradient(135deg, ${themeColor}, #0ea5e9)` }}
             />
-            <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-white/20">
+            <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-[#d8e7f0] shadow-md bg-[#ffffff]">
               {profile.avatar_url ? (
                 <img
                   src={profile.avatar_url}
@@ -39,7 +40,7 @@ export default function HeroSection({ profile }: HeroSectionProps) {
               ) : (
                 <div
                   className="w-full h-full flex items-center justify-center text-4xl font-bold"
-                  style={{ background: `linear-gradient(135deg, ${themeColor}50, #8b5cf650)` }}
+                  style={{ background: `linear-gradient(135deg, ${themeColor}50, #0ea5e950)` }}
                 >
                   {profile.full_name
                     .split(' ')
@@ -95,7 +96,7 @@ export default function HeroSection({ profile }: HeroSectionProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-slate-400 text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-[#536471] text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
         >
           {profile.bio}
         </motion.p>
@@ -114,7 +115,7 @@ export default function HeroSection({ profile }: HeroSectionProps) {
               rel="noopener noreferrer"
               className="group flex items-center gap-2.5 px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105"
               style={{
-                background: `linear-gradient(135deg, ${themeColor}, #8b5cf6)`,
+                background: `linear-gradient(135deg, ${themeColor}, #0284c7)`,
                 boxShadow: `0 8px 30px -8px ${themeColor}80`,
               }}
             >
@@ -124,7 +125,7 @@ export default function HeroSection({ profile }: HeroSectionProps) {
           )}
           <a
             href="#projects"
-            className="flex items-center gap-2.5 px-6 py-3 rounded-xl font-semibold text-slate-300 border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105"
+            className="flex items-center gap-2.5 px-6 py-3 rounded-xl font-semibold text-[#0f1419] border border-[#d8e7f0] bg-[#ffffff] hover:bg-[#E3ECF6] hover:border-[#1da1f2] transition-all duration-300 hover:scale-105 shadow-xs"
           >
             <MapPin size={18} />
             See My Work

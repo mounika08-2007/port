@@ -1,63 +1,205 @@
 @import "tailwindcss";
 
-/* ==========================================
-   TEAM PORTFOLIO ECOSYSTEM - DESIGN SYSTEM
-   ========================================== */
+/* ============================================================
+   SKY VIVID THEME (from 21st.dev @svhewa23/themes/sky-vivid-1787711063754)
+   Light Mode Specification
+   ============================================================ */
 
-@theme {
-  --color-glass-bg: rgba(255, 255, 255, 0.04);
-  --color-glass-border: rgba(255, 255, 255, 0.08);
-  --color-glass-hover: rgba(255, 255, 255, 0.08);
-  --color-dark-900: #050508;
-  --color-dark-800: #0B0F19;
-  --color-dark-700: #111827;
-  --color-dark-600: #1a1f2e;
-  --color-dark-500: #252a3a;
+:root, .light {
+  --background: #ffffff;
+  --foreground: #0f1419;
+  --card: #ebf3f3;
+  --card-foreground: #0f1419;
+  --popover: #ffffff;
+  --popover-foreground: #0f1419;
+  --primary: #137cc2;
+  --primary-foreground: #ffffff;
+  --secondary: #1f252a;
+  --secondary-foreground: #ffffff;
+  --muted: #e4e4ec;
+  --muted-foreground: #0f1419;
+  --accent: #8d9eb1;
+  --accent-foreground: #1e9df1;
+  --destructive: #f4212e;
+  --destructive-foreground: #ffffff;
+  --border: #d8e7f0;
+  --input: #acb8be;
+  --ring: #1da1f2;
+  --chart-1: #1e9df1;
+  --chart-2: #00b87a;
+  --chart-3: #f7b928;
+  --chart-4: #17bf63;
+  --chart-5: #e0245e;
+  --radius: 1.3rem;
+  --sidebar: #f7f8f8;
+  --sidebar-foreground: #0f1419;
+  --sidebar-primary: #1e9df1;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #E3ECF6;
+  --sidebar-accent-foreground: #1e9df1;
+  --sidebar-border: #e1e8ed;
+  --sidebar-ring: #1da1f2;
+  --font-sans: Open Sans, sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: Menlo, monospace;
+  --shadow-color: hsl(203 63.7% 32.1% / 0.24);
+  --shadow-opacity: 0;
+  --shadow-blur: 0px;
+  --shadow-spread: 0px;
+  --shadow-offset-x: 0px;
+  --shadow-offset-y: 2px;
+  --letter-spacing: 0em;
+  --spacing: 0.25rem;
+
+  /* Custom project ecosystem variables mapped to Sky Vivid Light */
+  --bg-primary: #ffffff;
+  --text-primary: #0f1419;
+  --text-secondary: #536471;
+  --card-bg: linear-gradient(135deg, rgba(235, 243, 243, 0.95) 0%, rgba(216, 231, 240, 0.75) 100%);
+  --card-border: #d8e7f0;
+  --card-bg-static: #ebf3f3;
+  --input-bg: #ffffff;
+  --input-border: #d8e7f0;
+  --gradient-text: linear-gradient(135deg, #0f1419 0%, #137cc2 65%, #1e9df1 100%);
+  --scrollbar-track: #f7f8f8;
+  --scrollbar-thumb: rgba(19, 124, 194, 0.35);
+
+  --color-glass-bg: rgba(235, 243, 243, 0.85);
+  --color-glass-border: #d8e7f0;
+  --color-glass-hover: #E3ECF6;
+  --color-dark-900: #ffffff;
+  --color-dark-800: #f7f8f8;
+  --color-dark-700: #ebf3f3;
+  --color-dark-600: #d8e7f0;
+  --color-dark-500: #acb8be;
 }
 
-/* ==========================================
+.dark {
+  --background: #000000;
+  --foreground: #e7e9ea;
+  --card: #17181c;
+  --card-foreground: #d9d9d9;
+  --popover: #000000;
+  --popover-foreground: #e7e9ea;
+  --primary: #1c9cf0;
+  --primary-foreground: #ffffff;
+  --secondary: #f0f3f4;
+  --secondary-foreground: #0f1419;
+  --muted: #181818;
+  --muted-foreground: #72767a;
+  --accent: #061622;
+  --accent-foreground: #1c9cf0;
+  --destructive: #f4212e;
+  --destructive-foreground: #ffffff;
+  --border: #242628;
+  --input: #22303c;
+  --ring: #1da1f2;
+  --chart-1: #1e9df1;
+  --chart-2: #00b87a;
+  --chart-3: #f7b928;
+  --chart-4: #17bf63;
+  --chart-5: #e0245e;
+  --radius: 0.375rem;
+  --sidebar: #17181c;
+  --sidebar-foreground: #d9d9d9;
+  --sidebar-primary: #1da1f2;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #061622;
+  --sidebar-accent-foreground: #1c9cf0;
+  --sidebar-border: #38444d;
+  --sidebar-ring: #1da1f2;
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  --font-serif: ui-serif, Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, monospace;
+  --shadow-color: rgba(29, 161, 242, 0.25);
+  --shadow-opacity: 0.1;
+  --shadow-blur: 8px;
+  --shadow-spread: -1px;
+  --shadow-offset-x: 0px;
+  --shadow-offset-y: 4px;
+  --letter-spacing: 0em;
+  --spacing: 0.25rem;
+
+  --bg-primary: #000000;
+  --text-primary: #e7e9ea;
+  --text-secondary: #72767a;
+  --card-bg: linear-gradient(135deg, rgba(23, 24, 28, 0.85) 0%, rgba(6, 22, 34, 0.65) 100%);
+  --card-border: #242628;
+  --card-bg-static: #17181c;
+  --input-bg: rgba(34, 48, 60, 0.4);
+  --input-border: #242628;
+  --gradient-text: linear-gradient(135deg, #ffffff 0%, #d9d9d9 40%, #1c9cf0 100%);
+  --scrollbar-track: #000000;
+  --scrollbar-thumb: rgba(28, 156, 240, 0.3);
+
+  --color-glass-bg: rgba(28, 156, 240, 0.04);
+  --color-glass-border: rgba(216, 231, 240, 0.1);
+  --color-glass-hover: rgba(28, 156, 240, 0.08);
+  --color-dark-900: #000000;
+  --color-dark-800: #17181c;
+  --color-dark-700: #22303c;
+  --color-dark-600: #242628;
+  --color-dark-500: #38444d;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-radius: var(--radius);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-glass-bg: var(--color-glass-bg);
+  --color-glass-border: var(--color-glass-border);
+  --color-glass-hover: var(--color-glass-hover);
+  --color-dark-900: var(--color-dark-900);
+  --color-dark-800: var(--color-dark-800);
+  --color-dark-700: var(--color-dark-700);
+  --color-dark-600: var(--color-dark-600);
+  --color-dark-500: var(--color-dark-500);
+}
+
+/* ============================================================
    BASE STYLES
-   ========================================== */
-/* ==========================================
-   THEME CONSTANTS & VARIABLES
-   ========================================== */
-:root {
-  --bg-primary: #050508;
-  --text-primary: #e2e8f0;
-  --text-secondary: #94a3b8;
-  --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-  --card-border: rgba(255, 255, 255, 0.07);
-  --card-bg-static: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-  --input-bg: rgba(255, 255, 255, 0.03);
-  --input-border: rgba(255, 255, 255, 0.09);
-  --gradient-text: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-  --scrollbar-track: #050508;
-  --scrollbar-thumb: rgba(255, 255, 255, 0.15);
-}
-
-.light {
-  --bg-primary: #FAF9F6;
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --card-bg: linear-gradient(135deg, rgba(15, 23, 42, 0.03) 0%, rgba(15, 23, 42, 0.01) 100%);
-  --card-border: rgba(15, 23, 42, 0.10);
-  --card-bg-static: linear-gradient(135deg, rgba(15, 23, 42, 0.03) 0%, rgba(15, 23, 42, 0.01) 100%);
-  --input-bg: rgba(15, 23, 42, 0.02);
-  --input-border: rgba(15, 23, 42, 0.10);
-  --gradient-text: linear-gradient(135deg, #0f172a 0%, #475569 100%);
-  --scrollbar-track: #FAF9F6;
-  --scrollbar-thumb: rgba(15, 23, 42, 0.15);
-}
-
+   ============================================================ */
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  font-family: var(--font-sans), var(--font-inter), system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom scrollbar */
@@ -72,27 +214,27 @@ body {
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  filter: brightness(1.2);
+  filter: brightness(1.1);
 }
 
-/* ==========================================
+/* ============================================================
    GLASSMORPHISM UTILITIES
-   ========================================== */
+   ============================================================ */
 .glass-card {
   background: var(--card-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--card-border);
-  border-radius: 1rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: var(--radius, 1.25rem);
+  box-shadow: 0 4px 20px -2px rgba(19, 124, 194, 0.08);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-  background: var(--card-bg);
-  border-color: var(--card-border);
-  filter: brightness(1.04);
+  background: #ffffff;
+  border-color: #1da1f2;
   transform: translateY(-2px);
-  box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 16px 40px -10px rgba(19, 124, 194, 0.16);
 }
 
 .glass-card-static {
@@ -100,7 +242,8 @@ body {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--card-border);
-  border-radius: 1rem;
+  border-radius: var(--radius, 1.25rem);
+  box-shadow: 0 4px 18px -4px rgba(19, 124, 194, 0.06);
 }
 
 .glass-input {
@@ -110,19 +253,20 @@ body {
   padding: 0.75rem 1rem;
   color: var(--text-primary);
   font-size: 0.9rem;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   outline: none;
   width: 100%;
 }
 
 .glass-input:focus {
-  border-color: var(--card-border);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  background: #ffffff;
+  border-color: var(--ring, #1da1f2);
+  box-shadow: 0 0 0 3px rgba(30, 157, 241, 0.2);
 }
 
 .glass-input::placeholder {
   color: var(--text-secondary);
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .glass-textarea {
@@ -132,7 +276,7 @@ body {
   padding: 0.75rem 1rem;
   color: var(--text-primary);
   font-size: 0.9rem;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   outline: none;
   width: 100%;
   resize: vertical;
@@ -140,17 +284,22 @@ body {
 }
 
 .glass-textarea:focus {
-  border-color: var(--card-border);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  background: #ffffff;
+  border-color: var(--ring, #1da1f2);
+  box-shadow: 0 0 0 3px rgba(30, 157, 241, 0.2);
 }
 
+.glass-textarea::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
 
-/* ==========================================
+/* ============================================================
    BUTTON STYLES
-   ========================================== */
+   ============================================================ */
 .btn-primary {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  color: white;
+  background: linear-gradient(135deg, #137cc2, #1e9df1);
+  color: #ffffff;
   padding: 0.65rem 1.5rem;
   border-radius: 0.75rem;
   font-weight: 600;
@@ -161,12 +310,13 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  box-shadow: 0 4px 14px 0 rgba(19, 124, 194, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.5);
-  filter: brightness(1.1);
+  box-shadow: 0 8px 25px -4px rgba(19, 124, 194, 0.5);
+  filter: brightness(1.05);
 }
 
 .btn-primary:disabled {
@@ -192,19 +342,19 @@ body {
 }
 
 .btn-danger:hover {
-  filter: brightness(1.15);
+  filter: brightness(1.1);
   transform: translateY(-1px);
 }
 
 .btn-ghost {
-  background: transparent;
-  color: #94a3b8;
+  background: #ffffff;
+  color: #536471;
   padding: 0.5rem 1rem;
   border-radius: 0.65rem;
   font-weight: 500;
   font-size: 0.85rem;
   transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid #d8e7f0;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -212,14 +362,14 @@ body {
 }
 
 .btn-ghost:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: #e2e8f0;
-  border-color: rgba(255, 255, 255, 0.15);
+  background: #E3ECF6;
+  color: #137cc2;
+  border-color: #1da1f2;
 }
 
-/* ==========================================
-   ANIMATED BACKGROUND BLOBS
-   ========================================== */
+/* ============================================================
+   ANIMATED BACKGROUND BLOBS (Light Mode Soft Sky)
+   ============================================================ */
 @keyframes blob-float {
   0%, 100% {
     transform: translate(0, 0) scale(1);
@@ -254,7 +404,7 @@ body {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.3;
+  opacity: 0.45;
   pointer-events: none;
 }
 
@@ -270,26 +420,26 @@ body {
   animation: blob-float 30s ease-in-out infinite reverse;
 }
 
-/* ==========================================
+/* ============================================================
    GRADIENT TEXT
-   ========================================== */
+   ============================================================ */
 .gradient-text {
-  background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+  background: var(--gradient-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* ==========================================
-   ADMIN SIDEBAR
-   ========================================== */
+/* ============================================================
+   ADMIN SIDEBAR (Light Sky Palette)
+   ============================================================ */
 .sidebar-link {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   padding: 0.7rem 1rem;
   border-radius: 0.75rem;
-  color: #94a3b8;
+  color: #536471;
   font-weight: 500;
   font-size: 0.9rem;
   transition: all 0.25s ease;
@@ -297,19 +447,20 @@ body {
 }
 
 .sidebar-link:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: #e2e8f0;
+  background: #E3ECF6;
+  color: #0f1419;
 }
 
 .sidebar-link.active {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.1));
-  color: #a5b4fc;
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  background: #E3ECF6;
+  color: #137cc2;
+  border: 1px solid #d8e7f0;
+  font-weight: 600;
 }
 
-/* ==========================================
+/* ============================================================
    LOADING SPINNER
-   ========================================== */
+   ============================================================ */
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
@@ -317,15 +468,15 @@ body {
 .loading-spinner {
   width: 2rem;
   height: 2rem;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  border-top-color: #6366f1;
+  border: 2px solid #d8e7f0;
+  border-top-color: #137cc2;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
 
-/* ==========================================
+/* ============================================================
    DYNAMIC GLITCH TYPOGRAPHY MATRIX
-   ========================================== */
+   ============================================================ */
 @layer utilities {
   .dynamic-glitch-text {
     position: relative;
@@ -342,13 +493,13 @@ body {
   }
   .dynamic-glitch-text::before {
     left: 2px;
-    text-shadow: -1px 0 #ff00c1;
+    text-shadow: -1px 0 #1da1f2;
     clip: rect(44px, 450px, 56px, 0);
     animation: glitch-anim 5s infinite linear alternate-reverse;
   }
   .dynamic-glitch-text::after {
     left: -2px;
-    text-shadow: -1px 0 #00fff9, 0 1px #00fff9;
+    text-shadow: -1px 0 #00b87a, 0 1px #00b87a;
     clip: rect(85px, 450px, 140px, 0);
     animation: glitch-anim2 5s infinite linear alternate-reverse;
   }
@@ -364,4 +515,3 @@ body {
     100% { clip: rect(12px, 9999px, 115px, 0); }
   }
 }
-

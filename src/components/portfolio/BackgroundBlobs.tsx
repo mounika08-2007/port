@@ -24,13 +24,13 @@ export default function BackgroundBlobs({ themeColor }: BackgroundBlobsProps) {
         transition={{ duration: 2 }}
       />
 
-      {/* Secondary purple blob */}
+      {/* Secondary sky accent blob */}
       <motion.div
         className="blob blob-2"
         style={{
           width: '500px',
           height: '500px',
-          background: `radial-gradient(circle, #8b5cf640 0%, transparent 70%)`,
+          background: `radial-gradient(circle, #0ea5e940 0%, transparent 70%)`,
           bottom: '10%',
           left: '-10%',
         }}
@@ -55,13 +55,13 @@ export default function BackgroundBlobs({ themeColor }: BackgroundBlobsProps) {
         transition={{ duration: 2, delay: 1 }}
       />
 
-      {/* Subtle blue blob */}
+      {/* Subtle vivid sky blob */}
       <motion.div
         className="blob blob-1"
         style={{
           width: '400px',
           height: '400px',
-          background: `radial-gradient(circle, #3b82f620 0%, transparent 70%)`,
+          background: `radial-gradient(circle, #1c9cf025 0%, transparent 70%)`,
           top: '60%',
           right: '20%',
         }}

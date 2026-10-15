@@ -142,21 +142,21 @@ export default function GuestbookSection({ profileId, themeColor, soundEnabled }
         <div className="grid gap-8 md:grid-cols-5 items-start">
           {/* Guestbook signing form */}
           <div className="md:col-span-2 glass-card-static p-6 space-y-4">
-            <h3 className="text-white font-semibold text-sm">Sign the Guestbook</h3>
-            <p className="text-xs text-slate-500">
+            <h3 className="text-[#0f1419] font-semibold text-sm">Sign the Guestbook</h3>
+            <p className="text-xs text-[#536471]">
               Leave a public message or quick feedback here! It will broadcast to everyone on this page.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="text-[10px] text-zinc-450 uppercase font-bold tracking-wider">Your Name</label>
+                <label className="text-[10px] text-[#536471] uppercase font-bold tracking-wider">Your Name</label>
                 <div className="relative mt-1">
-                  <User className="absolute left-3.5 top-2.5 w-4 h-4 text-zinc-650" />
+                  <User className="absolute left-3.5 top-2.5 w-4 h-4 text-[#536471]" />
                   <input
                     type="text"
                     value={visitorName}
                     onChange={(e) => setVisitorName(e.target.value)}
-                    className="glass-input !pl-10 !py-2 text-sm bg-zinc-950/80 border border-zinc-850"
+                    className="glass-input !pl-10 !py-2 text-sm bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419]"
                     placeholder="e.g. Alice"
                     disabled={submitting}
                   />
@@ -164,11 +164,11 @@ export default function GuestbookSection({ profileId, themeColor, soundEnabled }
               </div>
 
               <div>
-                <label className="text-[10px] text-zinc-450 uppercase font-bold tracking-wider">Message</label>
+                <label className="text-[10px] text-[#536471] uppercase font-bold tracking-wider">Message</label>
                 <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="glass-input mt-1 !py-2 text-sm bg-zinc-950/80 border border-zinc-850"
+                  className="glass-input mt-1 !py-2 text-sm bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419]"
                   placeholder="Say hello..."
                   rows={3}
                   disabled={submitting}
@@ -180,7 +180,7 @@ export default function GuestbookSection({ profileId, themeColor, soundEnabled }
                 disabled={submitting}
                 className="w-full btn-primary flex items-center justify-center gap-2"
                 style={{
-                  background: `linear-gradient(135deg, ${themeColor}, #8b5cf6)`,
+                  background: `linear-gradient(135deg, ${themeColor}, #0ea5e9)`,
                 }}
               >
                 {submitting ? (
@@ -210,24 +210,24 @@ export default function GuestbookSection({ profileId, themeColor, soundEnabled }
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.3, delay: idx < 5 ? idx * 0.05 : 0 }}
-                    className="glass-card-static p-4.5 space-y-2 border border-white/5 bg-zinc-950/40 relative group"
+                    className="glass-card-static p-4.5 space-y-2 border border-[#d8e7f0] bg-[#ffffff] relative group shadow-xs"
                   >
-                    <div className="flex items-center justify-between border-b border-white/5 pb-2">
+                    <div className="flex items-center justify-between border-b border-[#d8e7f0] pb-2">
                       <div className="flex items-center gap-2">
                         <div
                           className="w-6 h-6 rounded-full flex items-center justify-center font-bold text-[10px] text-white shrink-0"
                           style={{
-                            background: `linear-gradient(135deg, ${themeColor}, #8b5cf6)`,
+                            background: `linear-gradient(135deg, ${themeColor}, #0ea5e9)`,
                           }}
                         >
                           {entry.visitor_name.charAt(0).toUpperCase()}
                         </div>
-                        <span className="font-semibold text-white text-xs truncate max-w-[140px]">
+                        <span className="font-semibold text-[#0f1419] text-xs truncate max-w-[140px]">
                           {entry.visitor_name}
                         </span>
                       </div>
 
-                      <span className="text-[9px] text-zinc-550 flex items-center gap-1 font-mono uppercase tracking-wider shrink-0">
+                      <span className="text-[9px] text-[#536471] flex items-center gap-1 font-mono uppercase tracking-wider shrink-0">
                         <Calendar size={10} />
                         {new Date(entry.created_at).toLocaleDateString(undefined, {
                           month: 'short',
@@ -238,14 +238,14 @@ export default function GuestbookSection({ profileId, themeColor, soundEnabled }
                       </span>
                     </div>
 
-                    <p className="text-zinc-300 text-xs md:text-sm leading-relaxed whitespace-pre-wrap break-words pl-1">
+                    <p className="text-[#0f1419] text-xs md:text-sm leading-relaxed whitespace-pre-wrap break-words pl-1">
                       {entry.message}
                     </p>
                   </motion.div>
                 ))}
 
                 {entries.length === 0 && (
-                  <div className="p-12 border border-dashed border-zinc-850 rounded-xl text-center text-zinc-650 text-xs">
+                  <div className="p-12 border border-dashed border-[#d8e7f0] rounded-xl text-center text-[#536471] text-xs bg-[#ebf3f3]">
                     Be the first to sign the guestbook! Leave a friendly note.
                   </div>
                 )}

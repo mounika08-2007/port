@@ -19,7 +19,7 @@ export default function AdminProfilePage() {
     avatar_url: '',
     bio: '',
     resume_url: '',
-    theme_color: '#6366f1',
+    theme_color: '#1c9cf0',
   });
   const [profileExists, setProfileExists] = useState(false);
 
@@ -133,7 +133,7 @@ export default function AdminProfilePage() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-bold gradient-text">Profile Settings</h1>
-          <p className="text-slate-500 text-sm mt-1">
+          <p className="text-[#536471] text-sm mt-1">
             Manage your portfolio profile information
           </p>
         </div>
@@ -168,7 +168,7 @@ export default function AdminProfilePage() {
         {/* Avatar Section */}
         <div className="flex items-center gap-6">
           <div className="relative">
-            <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white/10 bg-white/5">
+            <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-[#d8e7f0] bg-[#ebf3f3]">
               {profile.avatar_url ? (
                 <img
                   src={profile.avatar_url}
@@ -209,7 +209,7 @@ export default function AdminProfilePage() {
                 </button>
               )}
             </div>
-            <p className="text-slate-650 text-xs mt-2.5">JPG, PNG or WebP. Max 2MB.</p>
+            <p className="text-[#536471] text-xs mt-2.5">JPG, PNG or WebP. Max 2MB.</p>
           </div>
 
         </div>
@@ -218,7 +218,7 @@ export default function AdminProfilePage() {
         <div className="grid gap-5 md:grid-cols-2">
           {/* Slug */}
           <div>
-            <label htmlFor="slug" className="block text-sm font-medium text-slate-400 mb-2">
+            <label htmlFor="slug" className="block text-sm font-semibold text-[#0f1419] mb-2">
               Portfolio Slug *
             </label>
             <input
@@ -234,14 +234,14 @@ export default function AdminProfilePage() {
               className="glass-input"
               placeholder="e.g., meharaj"
             />
-            <p className="text-slate-600 text-xs mt-1">
+            <p className="text-[#536471] text-xs mt-1">
               Your portfolio will be at /portfolio/{profile.slug || 'your-slug'}
             </p>
           </div>
 
           {/* Full Name */}
           <div>
-            <label htmlFor="fullName" className="block text-sm font-medium text-slate-400 mb-2">
+            <label htmlFor="fullName" className="block text-sm font-semibold text-[#0f1419] mb-2">
               Full Name *
             </label>
             <input
@@ -260,7 +260,7 @@ export default function AdminProfilePage() {
           <div>
             <label
               htmlFor="profTitle"
-              className="block text-sm font-medium text-slate-400 mb-2"
+              className="block text-sm font-semibold text-[#0f1419] mb-2"
             >
               Professional Title
             </label>
@@ -280,28 +280,28 @@ export default function AdminProfilePage() {
           <div>
             <label
               htmlFor="themeColor"
-              className="block text-sm font-medium text-slate-400 mb-2"
+              className="block text-sm font-semibold text-[#0f1419] mb-2"
             >
               Theme Color
             </label>
             <div className="flex items-center gap-3">
               <input
                 type="color"
-                value={profile.theme_color || '#6366f1'}
+                value={profile.theme_color || '#1c9cf0'}
                 onChange={(e) =>
                   setProfile((prev) => ({ ...prev, theme_color: e.target.value }))
                 }
-                className="w-10 h-10 rounded-lg border border-white/10 cursor-pointer bg-transparent"
+                className="w-10 h-10 rounded-lg border border-[#d8e7f0] cursor-pointer bg-transparent"
               />
               <input
                 id="themeColor"
                 type="text"
-                value={profile.theme_color || '#6366f1'}
+                value={profile.theme_color || '#1c9cf0'}
                 onChange={(e) =>
                   setProfile((prev) => ({ ...prev, theme_color: e.target.value }))
                 }
                 className="glass-input flex-1"
-                placeholder="#6366f1"
+                placeholder="#1c9cf0"
               />
             </div>
           </div>
@@ -309,7 +309,7 @@ export default function AdminProfilePage() {
 
         {/* Resume URL */}
         <div>
-          <label htmlFor="resumeUrl" className="block text-sm font-medium text-slate-400 mb-2">
+          <label htmlFor="resumeUrl" className="block text-sm font-semibold text-[#0f1419] mb-2">
             Resume URL
           </label>
           <input
@@ -326,7 +326,7 @@ export default function AdminProfilePage() {
 
         {/* Bio */}
         <div>
-          <label htmlFor="bio" className="block text-sm font-medium text-slate-400 mb-2">
+          <label htmlFor="bio" className="block text-sm font-semibold text-[#0f1419] mb-2">
             Bio
           </label>
           <textarea

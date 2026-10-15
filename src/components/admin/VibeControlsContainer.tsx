@@ -36,7 +36,7 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
     custom_font: 'Plus Jakarta Sans',
     experiences: [],
     testimonials: [],
-    theme_color: '#6366f1',
+    theme_color: '#1c9cf0',
     github_username: '',
     show_terminal_toggle: true,
     sound_effects_enabled: false,
@@ -270,18 +270,18 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
   };
 
   const previewDuration = profile.animation_speed === 'slow' ? 1.2 : profile.animation_speed === 'fast' ? 0.3 : 0.6;
-  const themeColor = profile.theme_color || '#6366f1';
+  const themeColor = profile.theme_color || '#1c9cf0';
 
   return (
     <div className="space-y-6">
       {/* Visual Controls Header */}
       <div className="flex flex-wrap items-center justify-between gap-4 mb-2">
         <div>
-          <h2 className="text-xl font-bold text-white flex items-center gap-2">
-            <Sparkles className="text-purple-400 w-5 h-5 animate-pulse" />
+          <h2 className="text-xl font-bold text-[#0f1419] flex items-center gap-2">
+            <Sparkles className="text-sky-400 w-5 h-5 animate-pulse" />
             Vibe & Experience Studio
           </h2>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-[#536471]">
             Customize entrance animations, layout grids, canvases, and manage timeline milestones.
           </p>
         </div>
@@ -302,13 +302,13 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
       </div>
 
       {/* Modern Studio Tabs */}
-      <div className="flex border-b border-zinc-800 space-x-2 p-1 rounded-xl bg-zinc-900/50 max-w-md">
+      <div className="flex border border-[#d8e7f0] space-x-2 p-1 rounded-xl bg-[#ebf3f3] max-w-md">
         <button
           onClick={() => setActiveTab('studio')}
           className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-xs font-semibold transition-all duration-200 ${
             activeTab === 'studio'
-              ? 'bg-purple-600 text-white border border-purple-500/20 shadow-lg'
-              : 'text-zinc-400 hover:text-white'
+              ? 'bg-[#137cc2] text-white shadow-sm font-bold'
+              : 'text-[#536471] hover:text-[#0f1419] hover:bg-[#ffffff]'
           }`}
         >
           🎨 Animation & Theme Studio
@@ -317,8 +317,8 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
           onClick={() => setActiveTab('sections')}
           className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-xs font-semibold transition-all duration-200 ${
             activeTab === 'sections'
-              ? 'bg-purple-600 text-white border border-purple-500/20 shadow-lg'
-              : 'text-zinc-400 hover:text-white'
+              ? 'bg-[#137cc2] text-white shadow-sm font-bold'
+              : 'text-[#536471] hover:text-[#0f1419] hover:bg-[#ffffff]'
           }`}
         >
           📦 Timeline & Reviews Builder
@@ -327,8 +327,8 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
           onClick={() => setActiveTab('blog')}
           className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-xs font-semibold transition-all duration-200 ${
             activeTab === 'blog'
-              ? 'bg-purple-600 text-white border border-purple-500/20 shadow-lg'
-              : 'text-zinc-400 hover:text-white'
+              ? 'bg-[#137cc2] text-white shadow-sm font-bold'
+              : 'text-[#536471] hover:text-[#0f1419] hover:bg-[#ffffff]'
           }`}
         >
           📝 Blog Publisher
@@ -347,11 +347,11 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
             {/* Animation Style Selector Grid */}
             <div className="glass-card-static p-6 space-y-4">
               <div>
-                <h3 className="text-white font-semibold text-sm flex items-center gap-1.5">
-                  <Play size={15} className="text-purple-400" />
+                <h3 className="text-[#0f1419] font-bold text-sm flex items-center gap-1.5">
+                  <Play size={15} className="text-sky-400" />
                   Animation Style
                 </h3>
-                <p className="text-[11px] text-zinc-500 mt-0.5">
+                <p className="text-[11px] text-[#536471] mt-0.5">
                   Controls how elements materialize on scroll.
                 </p>
               </div>
@@ -374,12 +374,12 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                     }}
                     className={`p-3 text-left border rounded-xl capitalize transition-all duration-200 ${
                       profile.animation_style === opt.id
-                        ? 'border-purple-500 bg-purple-500/10 text-white'
-                        : 'border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:border-zinc-700'
+                        ? 'border-[#137cc2] bg-[#E3ECF6] text-[#137cc2] font-bold'
+                        : 'border-[#d8e7f0] bg-[#ffffff] text-[#536471] hover:border-[#1da1f2] hover:bg-[#E3ECF6]'
                     }`}
                   >
-                    <div className="text-xs font-semibold text-white">{opt.label}</div>
-                    <div className="text-[10px] text-zinc-500 mt-1 leading-relaxed">{opt.desc}</div>
+                    <div className="text-xs font-semibold text-[#0f1419]">{opt.label}</div>
+                    <div className="text-[10px] text-[#536471] mt-1 leading-relaxed">{opt.desc}</div>
                   </button>
                 ))}
               </div>
@@ -387,10 +387,10 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
               {/* Animation Speed Selector */}
               <div className="pt-2">
                 <div className="flex justify-between items-center mb-2">
-                  <label className="text-xs font-semibold text-zinc-400">
+                  <label className="text-xs font-semibold text-[#0f1419]">
                     Animation Speed Primitive
                   </label>
-                  <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-zinc-900 text-purple-400">
+                  <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-[#E3ECF6] text-[#137cc2] border border-[#d8e7f0]">
                     {profile.animation_speed === 'slow' ? 'Slow (1.2s)' : profile.animation_speed === 'fast' ? 'Fast (0.3s)' : 'Normal (0.6s)'}
                   </span>
                 </div>
@@ -405,8 +405,8 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                       }}
                       className={`flex-1 py-1.5 text-xs font-semibold rounded-lg border transition-all ${
                         profile.animation_speed === spd
-                          ? 'border-purple-500 bg-purple-500/10 text-white'
-                          : 'border-zinc-800 bg-transparent text-zinc-400 hover:bg-zinc-900/50 hover:text-white'
+                          ? 'border-[#137cc2] bg-[#137cc2] text-white'
+                          : 'border-[#d8e7f0] bg-[#ffffff] text-[#536471] hover:bg-[#E3ECF6] hover:text-[#0f1419]'
                       }`}
                     >
                       {spd.toUpperCase()}
@@ -419,11 +419,11 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
             {/* Ambient Background Selector Grid */}
             <div className="glass-card-static p-6 space-y-4">
               <div>
-                <h3 className="text-white font-semibold text-sm flex items-center gap-1.5">
-                  <Layout size={15} className="text-purple-400" />
+                <h3 className="text-[#0f1419] font-bold text-sm flex items-center gap-1.5">
+                  <Layout size={15} className="text-sky-400" />
                   Ambient Background Effect
                 </h3>
-                <p className="text-[11px] text-zinc-500 mt-0.5">
+                <p className="text-[11px] text-[#536471] mt-0.5">
                   Real-time ambient rendering selector.
                 </p>
               </div>
@@ -444,8 +444,8 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                     onClick={() => setProfile(p => ({ ...p, background_effect: opt.id as any }))}
                     className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all ${
                       profile.background_effect === opt.id
-                        ? 'border-purple-500 bg-purple-500/10 text-white'
-                        : 'border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:border-zinc-700'
+                        ? 'border-[#137cc2] bg-[#E3ECF6] text-[#137cc2] font-bold'
+                        : 'border-[#d8e7f0] bg-[#ffffff] text-[#536471] hover:border-[#1da1f2] hover:bg-[#E3ECF6]'
                     }`}
                   >
                     <span className="text-lg">{opt.icon}</span>
@@ -459,14 +459,14 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
             <div className="glass-card-static p-6 space-y-5">
               <div className="grid gap-5 md:grid-cols-2">
                 <div>
-                  <label className="block text-xs font-semibold text-white mb-2 flex items-center gap-1">
-                    <Layout size={13} className="text-purple-400" />
+                  <label className="block text-xs font-semibold text-[#0f1419] mb-2 flex items-center gap-1">
+                    <Layout size={13} className="text-sky-400" />
                     Layout Structure Variant
                   </label>
                   <select
                     value={profile.layout_variant || 'classic'}
                     onChange={(e) => setProfile(p => ({ ...p, layout_variant: e.target.value as any }))}
-                    className="glass-input bg-zinc-950 border border-zinc-850"
+                    className="glass-input bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419]"
                   >
                     <option value="classic">Classic Vertical Flow</option>
                     <option value="minimalist">Clean Minimalist Column</option>
@@ -475,14 +475,14 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-white mb-2 flex items-center gap-1">
-                    <Type size={13} className="text-purple-400" />
+                  <label className="block text-xs font-semibold text-[#0f1419] mb-2 flex items-center gap-1">
+                    <Type size={13} className="text-sky-400" />
                     Google Custom Font Pairing
                   </label>
                   <select
                     value={profile.custom_font || 'Plus Jakarta Sans'}
                     onChange={(e) => setProfile(p => ({ ...p, custom_font: e.target.value }))}
-                    className="glass-input bg-zinc-950 border border-zinc-850"
+                    className="glass-input bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419]"
                   >
                     {ULTRA_MODERN_FONTS.map(font => (
                       <option key={font} value={font}>{font}</option>
@@ -496,8 +496,8 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
             {/* Interactive Features & Integrations */}
             <div className="glass-card-static p-6 space-y-5">
               <div>
-                <h3 className="text-white font-semibold text-sm flex items-center gap-1.5 border-b border-zinc-800 pb-2">
-                  <Terminal size={15} className="text-purple-400" />
+                <h3 className="text-[#0f1419] font-bold text-sm flex items-center gap-1.5 border-b border-[#d8e7f0] pb-2">
+                  <Terminal size={15} className="text-sky-400" />
                   Interactive Features & Integrations
                 </h3>
               </div>
@@ -505,26 +505,26 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
               <div className="grid gap-5 md:grid-cols-2">
                 {/* GitHub Username */}
                 <div>
-                  <label className="block text-xs font-semibold text-white mb-2 flex items-center gap-1">
-                    <GithubIcon size={13} className="text-purple-400" />
+                  <label className="block text-xs font-semibold text-[#0f1419] mb-2 flex items-center gap-1">
+                    <GithubIcon size={13} className="text-sky-400" />
                     GitHub Username (Stats API)
                   </label>
                   <input
                     type="text"
                     value={profile.github_username || ''}
                     onChange={(e) => setProfile(p => ({ ...p, github_username: e.target.value }))}
-                    className="glass-input bg-zinc-950 border border-zinc-850"
+                    className="glass-input bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419]"
                     placeholder="e.g. torvalds"
                   />
-                  <span className="text-[10px] text-zinc-500 mt-1 block">
+                  <span className="text-[10px] text-[#536471] mt-1 block">
                     Displays dynamic statistics (repositories, followers) on your portfolio.
                   </span>
                 </div>
 
                 {/* Sound Effects */}
                 <div>
-                  <label className="block text-xs font-semibold text-white mb-2 flex items-center gap-1">
-                    <Volume2 size={13} className="text-purple-400" />
+                  <label className="block text-xs font-semibold text-[#0f1419] mb-2 flex items-center gap-1">
+                    <Volume2 size={13} className="text-sky-400" />
                     Audio Feedback (Sound Effects)
                   </label>
                   <div className="flex items-center gap-3 mt-1.5">
@@ -532,7 +532,7 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                       type="button"
                       onClick={() => setProfile(p => ({ ...p, sound_effects_enabled: !p.sound_effects_enabled }))}
                       className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                        profile.sound_effects_enabled ? 'bg-purple-600' : 'bg-zinc-800'
+                        profile.sound_effects_enabled ? 'bg-sky-500' : 'bg-[#d8e7f0]'
                       }`}
                     >
                       <span
@@ -541,20 +541,20 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                         }`}
                       />
                     </button>
-                    <span className="text-xs text-zinc-400">
+                    <span className="text-xs text-[#536471]">
                       {profile.sound_effects_enabled ? 'Enabled' : 'Disabled'}
                     </span>
                   </div>
-                  <span className="text-[10px] text-zinc-500 mt-2 block">
+                  <span className="text-[10px] text-[#536471] mt-2 block">
                     Synthesizes retro audio feedback for keystrokes and button clicks.
                   </span>
                 </div>
 
                 {/* Terminal Toggle */}
-                <div className="md:col-span-2 border-t border-zinc-900 pt-4 grid gap-5 md:grid-cols-2">
+                <div className="md:col-span-2 border-t border-[#d8e7f0] pt-4 grid gap-5 md:grid-cols-2">
                   <div>
-                    <label className="block text-xs font-semibold text-white mb-2 flex items-center gap-1">
-                      <Terminal size={13} className="text-purple-400" />
+                    <label className="block text-xs font-semibold text-[#0f1419] mb-2 flex items-center gap-1">
+                      <Terminal size={13} className="text-sky-400" />
                       CLI Terminal mode
                     </label>
                     <div className="flex items-center gap-3 mt-1.5">
@@ -562,7 +562,7 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                         type="button"
                         onClick={() => setProfile(p => ({ ...p, show_terminal_toggle: !p.show_terminal_toggle }))}
                         className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
-                          profile.show_terminal_toggle ? 'bg-purple-600' : 'bg-zinc-800'
+                          profile.show_terminal_toggle ? 'bg-sky-500' : 'bg-[#d8e7f0]'
                         }`}
                       >
                         <span
@@ -571,25 +571,25 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                           }`}
                         />
                       </button>
-                      <span className="text-xs text-zinc-400">
+                      <span className="text-xs text-[#536471]">
                         {profile.show_terminal_toggle ? 'Visible' : 'Hidden'}
                       </span>
                     </div>
-                    <span className="text-[10px] text-zinc-500 mt-2 block">
+                    <span className="text-[10px] text-[#536471] mt-2 block">
                       Enables a retro command-line terminal FAB on your portfolio.
                     </span>
                   </div>
 
                   {profile.show_terminal_toggle && (
                     <div>
-                      <label className="block text-xs font-semibold text-white mb-2">
+                      <label className="block text-xs font-semibold text-[#0f1419] mb-2">
                         Terminal Welcome Message
                       </label>
                       <input
                         type="text"
                         value={profile.custom_terminal_welcome || ''}
                         onChange={(e) => setProfile(p => ({ ...p, custom_terminal_welcome: e.target.value }))}
-                        className="glass-input bg-zinc-950 border border-zinc-850"
+                        className="glass-input bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419]"
                         placeholder="Type 'help' to view commands..."
                       />
                     </div>
@@ -603,16 +603,16 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
           {/* Real-time Visual Sandbox Preview Column */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-zinc-500">Live Sandbox Preview</span>
+              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#536471]">Live Sandbox Preview</span>
               <button 
                 onClick={triggerPreviewReplay}
-                className="p-1 rounded bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-white transition-all text-xs flex items-center gap-1"
+                className="p-1 rounded bg-[#ebf3f3] hover:bg-[#d8e7f0] text-[#536471] hover:text-[#137cc2] transition-all text-xs flex items-center gap-1"
               >
                 <Play size={10} /> Replay Vibe
               </button>
             </div>
 
-            <div className="glass-card-static p-6 relative overflow-hidden flex flex-col justify-between aspect-square" style={{ backgroundColor: '#050508', borderColor: `${themeColor}20` }}>
+            <div className="glass-card-static p-6 relative overflow-hidden flex flex-col justify-between aspect-square" style={{ backgroundColor: '#ffffff', borderColor: '#d8e7f0' }}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={previewKey}
@@ -637,7 +637,7 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1.5">
                       <div className="w-2 h-2 rounded-full" style={{ backgroundColor: themeColor }} />
-                      <span className="text-[8px] font-mono text-zinc-500 uppercase tracking-widest">Sys_Check</span>
+                      <span className="text-[8px] font-mono text-[#536471] uppercase tracking-widest">Sys_Check</span>
                     </div>
                     <span className="text-[8px] font-mono text-[#22c55e] animate-pulse">● ONLINE</span>
                   </div>
@@ -648,14 +648,14 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                         <span className="gradient-text relative z-10">STUDIO VIEW</span>
                       </h4>
                     ) : (
-                      <h4 className="text-xl font-extrabold text-white tracking-tight uppercase">STUDIO VIEW</h4>
+                      <h4 className="text-xl font-extrabold text-[#0f1419] tracking-tight uppercase">STUDIO VIEW</h4>
                     )}
-                    <p className="text-zinc-400 text-[10px] leading-relaxed max-w-[190px]">
+                    <p className="text-[#536471] text-[10px] leading-relaxed max-w-[190px]">
                       Chosen typography, colors, and layout animations are synchronized instantly.
                     </p>
                   </div>
 
-                  <div className="border-t border-zinc-900 pt-2 flex items-center justify-between text-[7px] text-zinc-650 font-mono">
+                  <div className="border-t border-[#d8e7f0] pt-2 flex items-center justify-between text-[7px] text-[#536471] font-mono">
                     <span>ANIM: {profile.animation_style?.toUpperCase()}</span>
                     <span>FONT: {profile.custom_font?.toUpperCase()}</span>
                   </div>
@@ -675,19 +675,19 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
           
           {/* Career Timelines Manager */}
           <div className="glass-card-static p-6 space-y-4">
-            <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
+            <div className="flex items-center justify-between border-b border-[#d8e7f0] pb-3">
               <div>
-                <h3 className="text-white font-semibold text-sm flex items-center gap-1.5">
-                  <Briefcase size={15} className="text-purple-400" />
+                <h3 className="text-[#0f1419] font-bold text-sm flex items-center gap-1.5">
+                  <Briefcase size={15} className="text-sky-400" />
                   Experience Timeline Builder
                 </h3>
-                <p className="text-[10px] text-zinc-500 mt-0.5">Manipulates profile timeline entries arrays dynamically.</p>
+                <p className="text-[10px] text-[#536471] mt-0.5">Manipulates profile timeline entries arrays dynamically.</p>
               </div>
               {expEditIndex === null && (
                 <button
                   type="button"
                   onClick={startAddExp}
-                  className="btn-ghost !py-1 px-2.5 text-xs text-purple-400 hover:text-white flex items-center gap-1 border-zinc-800 hover:bg-zinc-900"
+                  className="btn-ghost !py-1 px-2.5 text-xs text-sky-400 hover:text-[#137cc2] flex items-center gap-1 border-[#d8e7f0] hover:bg-[#ebf3f3]"
                 >
                   <Plus size={13} /> Add Milestone
                 </button>
@@ -696,39 +696,39 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
 
             {/* Exp Milestone Editor Form */}
             {expEditIndex !== null ? (
-              <div className="border border-zinc-800 rounded-xl p-4 bg-zinc-900/20 space-y-4">
-                <h4 className="text-xs font-semibold text-purple-400 uppercase tracking-wider">
+              <div className="border border-[#d8e7f0] rounded-xl p-4 bg-[#ffffff] space-y-4">
+                <h4 className="text-xs font-semibold text-sky-400 uppercase tracking-wider">
                   {expEditIndex === -1 ? 'Add Career Milestone' : `Edit Career Milestone #${expEditIndex + 1}`}
                 </h4>
 
                 <div className="grid gap-3 grid-cols-2">
                   <div className="col-span-2">
-                    <label className="text-[9px] text-zinc-450 uppercase font-bold">Role/Title *</label>
+                    <label className="text-[9px] text-[#536471] uppercase font-bold">Role/Title *</label>
                     <input
                       type="text"
                       value={tempExp.role}
                       onChange={(e) => setTempExp(prev => ({ ...prev, role: e.target.value }))}
-                      className="glass-input mt-1 !py-1.5 text-xs bg-zinc-950 border border-zinc-850"
+                      className="glass-input mt-1 !py-1.5 text-xs bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419]"
                       placeholder="e.g. Principal Lead Architect"
                     />
                   </div>
                   <div>
-                    <label className="text-[9px] text-zinc-450 uppercase font-bold">Company *</label>
+                    <label className="text-[9px] text-[#536471] uppercase font-bold">Company *</label>
                     <input
                       type="text"
                       value={tempExp.company}
                       onChange={(e) => setTempExp(prev => ({ ...prev, company: e.target.value }))}
-                      className="glass-input mt-1 !py-1.5 text-xs bg-zinc-950 border border-zinc-850"
+                      className="glass-input mt-1 !py-1.5 text-xs bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419]"
                       placeholder="e.g. Google Cloud"
                     />
                   </div>
                   <div>
-                    <label className="text-[9px] text-zinc-450 uppercase font-bold">Duration *</label>
+                    <label className="text-[9px] text-[#536471] uppercase font-bold">Duration *</label>
                     <input
                       type="text"
                       value={tempExp.duration}
                       onChange={(e) => setTempExp(prev => ({ ...prev, duration: e.target.value }))}
-                      className="glass-input mt-1 !py-1.5 text-xs bg-zinc-950 border border-zinc-850"
+                      className="glass-input mt-1 !py-1.5 text-xs bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419]"
                       placeholder="e.g. 2024 - PRESENT"
                     />
                   </div>
@@ -736,13 +736,13 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
 
                 {/* Achievement Bullet Points Sub-forms */}
                 <div className="space-y-2">
-                  <label className="text-[9px] text-zinc-450 uppercase font-bold">Bullet Accomplishments</label>
+                  <label className="text-[9px] text-[#536471] uppercase font-bold">Bullet Accomplishments</label>
                   
                   <ul className="space-y-1">
                     {tempExp.bullet_points.map((bullet, bIdx) => (
-                      <li key={bIdx} className="flex gap-2 items-center bg-zinc-950 border border-zinc-850 px-2.5 py-1.5 rounded-lg text-xs">
+                      <li key={bIdx} className="flex gap-2 items-center bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419] px-2.5 py-1.5 rounded-lg text-xs">
                         <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: themeColor }} />
-                        <span className="flex-1 text-zinc-300 leading-normal">{bullet}</span>
+                        <span className="flex-1 text-[#0f1419] leading-normal">{bullet}</span>
                         <button
                           type="button"
                           onClick={() => removeBullet(bIdx)}
@@ -760,24 +760,24 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                       value={newBullet}
                       onChange={(e) => setNewBullet(e.target.value)}
                       onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addBullet())}
-                      className="glass-input !py-1.5 text-xs flex-1 bg-zinc-950 border border-zinc-850"
+                      className="glass-input !py-1.5 text-xs flex-1 bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419]"
                       placeholder="Add metrics-driven milestone detail..."
                     />
                     <button
                       type="button"
                       onClick={addBullet}
-                      className="btn-ghost !p-2 shrink-0 border-zinc-850 hover:bg-zinc-900"
+                      className="btn-ghost !p-2 shrink-0 border-[#d8e7f0] hover:bg-[#ebf3f3]"
                     >
                       <Plus size={13} />
                     </button>
                   </div>
                 </div>
 
-                <div className="flex justify-end gap-2 pt-2 border-t border-zinc-850">
+                <div className="flex justify-end gap-2 pt-2 border-t border-[#d8e7f0]">
                   <button
                     type="button"
                     onClick={() => setExpEditIndex(null)}
-                    className="btn-ghost !py-1 px-3 text-xs border-zinc-850 hover:bg-zinc-900"
+                    className="btn-ghost !py-1 px-3 text-xs border-[#d8e7f0] hover:bg-[#ebf3f3]"
                   >
                     Cancel
                   </button>
@@ -795,10 +795,10 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
             {/* Careers timeline list with up/down arrows */}
             <div className="space-y-3">
               {(profile.experiences || []).map((exp, idx) => (
-                <div key={idx} className="flex items-center justify-between p-3.5 border border-zinc-850 rounded-xl bg-zinc-950 hover:border-zinc-700 transition-all">
+                <div key={idx} className="flex items-center justify-between p-3.5 border border-[#d8e7f0] rounded-xl bg-[#ffffff] hover:border-[#1da1f2] transition-all">
                   <div className="flex-1 pr-4 min-w-0">
-                    <h4 className="text-sm font-semibold text-white truncate">{exp.role}</h4>
-                    <p className="text-[11px] text-zinc-550 truncate mt-0.5">{exp.company} | {exp.duration}</p>
+                    <h4 className="text-sm font-semibold text-[#0f1419] truncate">{exp.role}</h4>
+                    <p className="text-[11px] text-[#536471] truncate mt-0.5">{exp.company} | {exp.duration}</p>
                   </div>
                   
                   <div className="flex items-center gap-1 shrink-0">
@@ -807,7 +807,7 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                         type="button"
                         onClick={() => moveExp(idx, 'up')}
                         disabled={idx === 0}
-                        className="text-[9px] font-bold text-zinc-500 hover:text-white p-0.5 disabled:opacity-30 disabled:hover:text-zinc-500"
+                        className="text-[9px] font-bold text-[#536471] hover:text-[#137cc2] p-0.5 disabled:opacity-30 disabled:hover:text-[#536471]"
                         title="Move Up"
                       >
                         ▲
@@ -816,7 +816,7 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                         type="button"
                         onClick={() => moveExp(idx, 'down')}
                         disabled={idx === (profile.experiences || []).length - 1}
-                        className="text-[9px] font-bold text-zinc-500 hover:text-white p-0.5 disabled:opacity-30 disabled:hover:text-zinc-500"
+                        className="text-[9px] font-bold text-[#536471] hover:text-[#137cc2] p-0.5 disabled:opacity-30 disabled:hover:text-[#536471]"
                         title="Move Down"
                       >
                         ▼
@@ -825,7 +825,7 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                     <button
                       type="button"
                       onClick={() => startEditExp(idx)}
-                      className="p-1.5 rounded hover:bg-zinc-900 text-zinc-400 hover:text-white"
+                      className="p-1.5 rounded hover:bg-[#ebf3f3] text-[#536471] hover:text-[#137cc2]"
                     >
                       <ChevronRight size={15} />
                     </button>
@@ -841,7 +841,7 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
               ))}
 
               {(!profile.experiences || profile.experiences.length === 0) && expEditIndex === null && (
-                <div className="p-8 border border-dashed border-zinc-800 rounded-xl text-center text-zinc-500 text-xs">
+                <div className="p-8 border border-dashed border-[#d8e7f0] rounded-xl text-center text-[#536471] text-xs">
                   No careers history timelines added. Click &quot;Add Milestone&quot; to begin.
                 </div>
               )}
@@ -851,19 +851,19 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
 
           {/* Testimonial Recommendations Builder */}
           <div className="glass-card-static p-6 space-y-4">
-            <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
+            <div className="flex items-center justify-between border-b border-[#d8e7f0] pb-3">
               <div>
-                <h3 className="text-white font-semibold text-sm flex items-center gap-1.5">
-                  <MessageSquare size={15} className="text-purple-400" />
+                <h3 className="text-[#0f1419] font-bold text-sm flex items-center gap-1.5">
+                  <MessageSquare size={15} className="text-sky-400" />
                   Testimonials Builder
                 </h3>
-                <p className="text-[10px] text-zinc-500 mt-0.5">Verified review grids cards builder.</p>
+                <p className="text-[10px] text-[#536471] mt-0.5">Verified review grids cards builder.</p>
               </div>
               {testiEditIndex === null && (
                 <button
                   type="button"
                   onClick={startAddTesti}
-                  className="btn-ghost !py-1 px-2.5 text-xs text-purple-400 hover:text-white flex items-center gap-1 border-zinc-850 hover:bg-zinc-900"
+                  className="btn-ghost !py-1 px-2.5 text-xs text-sky-400 hover:text-[#137cc2] flex items-center gap-1 border-[#d8e7f0] hover:bg-[#ebf3f3]"
                 >
                   <Plus size={13} /> Add Review
                 </button>
@@ -872,48 +872,48 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
 
             {/* Testimonials Edit Form */}
             {testiEditIndex !== null ? (
-              <div className="border border-zinc-800 rounded-xl p-4 bg-zinc-900/20 space-y-4">
-                <h4 className="text-xs font-semibold text-purple-400 uppercase tracking-wider">
+              <div className="border border-[#d8e7f0] rounded-xl p-4 bg-[#ffffff] space-y-4">
+                <h4 className="text-xs font-semibold text-sky-400 uppercase tracking-wider">
                   {testiEditIndex === -1 ? 'Add New Testimonial' : `Edit Testimonial #${testiEditIndex + 1}`}
                 </h4>
 
                 <div className="grid gap-3 grid-cols-2">
                   <div>
-                    <label className="text-[9px] text-zinc-450 uppercase font-bold">Reviewer Name *</label>
+                    <label className="text-[9px] text-[#536471] uppercase font-bold">Reviewer Name *</label>
                     <input
                       type="text"
                       value={tempTesti.reviewer_name}
                       onChange={(e) => setTempTesti(prev => ({ ...prev, reviewer_name: e.target.value }))}
-                      className="glass-input mt-1 !py-1.5 text-xs bg-zinc-950 border border-zinc-850"
+                      className="glass-input mt-1 !py-1.5 text-xs bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419]"
                       placeholder="e.g. Mounika Reddy"
                     />
                   </div>
                   <div>
-                    <label className="text-[9px] text-zinc-450 uppercase font-bold">Designation *</label>
+                    <label className="text-[9px] text-[#536471] uppercase font-bold">Designation *</label>
                     <input
                       type="text"
                       value={tempTesti.designation}
                       onChange={(e) => setTempTesti(prev => ({ ...prev, designation: e.target.value }))}
-                      className="glass-input mt-1 !py-1.5 text-xs bg-zinc-950 border border-zinc-850"
+                      className="glass-input mt-1 !py-1.5 text-xs bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419]"
                       placeholder="e.g. Director of Engineering"
                     />
                   </div>
                   <div className="col-span-2">
-                    <label className="text-[9px] text-zinc-450 uppercase font-bold">Avatar Image URL</label>
+                    <label className="text-[9px] text-[#536471] uppercase font-bold">Avatar Image URL</label>
                     <input
                       type="url"
                       value={tempTesti.avatar_url || ''}
                       onChange={(e) => setTempTesti(prev => ({ ...prev, avatar_url: e.target.value }))}
-                      className="glass-input mt-1 !py-1.5 text-xs bg-zinc-950 border border-zinc-850"
+                      className="glass-input mt-1 !py-1.5 text-xs bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419]"
                       placeholder="https://images.unsplash.com/..."
                     />
                   </div>
                   <div className="col-span-2">
-                    <label className="text-[9px] text-zinc-450 uppercase font-bold">Review Text *</label>
+                    <label className="text-[9px] text-[#536471] uppercase font-bold">Review Text *</label>
                     <textarea
                       value={tempTesti.review_text}
                       onChange={(e) => setTempTesti(prev => ({ ...prev, review_text: e.target.value }))}
-                      className="glass-textarea mt-1 !py-1.5 text-xs bg-zinc-950 border border-zinc-850"
+                      className="glass-textarea mt-1 !py-1.5 text-xs bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419]"
                       placeholder="Type peer recommendation detail here..."
                       rows={3}
                     />
@@ -922,32 +922,32 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
 
                 {/* Sub Verified Review Card Live Preview */}
                 {tempTesti.reviewer_name && (
-                  <div className="border border-zinc-850 p-3 rounded-lg bg-zinc-950 space-y-2">
-                    <span className="text-[8px] font-mono text-zinc-550 uppercase tracking-widest flex items-center gap-1">
+                  <div className="border border-[#d8e7f0] p-3 rounded-lg bg-[#ffffff] space-y-2">
+                    <span className="text-[8px] font-mono text-[#536471] uppercase tracking-widest flex items-center gap-1">
                       <Eye size={10} /> Live Review Card Check
                     </span>
-                    <p className="text-[10px] text-zinc-450 italic leading-relaxed">&ldquo;{tempTesti.review_text || '...'}&rdquo;</p>
-                    <div className="flex items-center gap-2.5 pt-2 border-t border-zinc-850">
+                    <p className="text-[10px] text-[#536471] italic leading-relaxed">&ldquo;{tempTesti.review_text || '...'}&rdquo;</p>
+                    <div className="flex items-center gap-2.5 pt-2 border-t border-[#d8e7f0]">
                       {tempTesti.avatar_url ? (
                         <img src={tempTesti.avatar_url} alt="" className="w-6 h-6 rounded-full object-cover" />
                       ) : (
-                        <div className="w-6 h-6 rounded-full flex items-center justify-center text-[8px] font-bold text-white shrink-0" style={{ background: `linear-gradient(135deg, ${themeColor}, #8b5cf6)` }}>
+                        <div className="w-6 h-6 rounded-full flex items-center justify-center text-[8px] font-bold text-white shrink-0" style={{ background: `linear-gradient(135deg, ${themeColor}, #0ea5e9)` }}>
                           {tempTesti.reviewer_name.split(' ').slice(0,2).map(n=>n[0]).join('').toUpperCase()}
                         </div>
                       )}
                       <div>
-                        <h5 className="text-white font-semibold text-[10px] leading-none">{tempTesti.reviewer_name}</h5>
-                        <span className="text-[8px] text-zinc-550 leading-none mt-1 inline-block">{tempTesti.designation}</span>
+                        <h5 className="text-[#0f1419] font-semibold text-[10px] leading-none">{tempTesti.reviewer_name}</h5>
+                        <span className="text-[8px] text-[#536471] leading-none mt-1 inline-block">{tempTesti.designation}</span>
                       </div>
                     </div>
                   </div>
                 )}
 
-                <div className="flex justify-end gap-2 pt-2 border-t border-zinc-850">
+                <div className="flex justify-end gap-2 pt-2 border-t border-[#d8e7f0]">
                   <button
                     type="button"
                     onClick={() => setTestiEditIndex(null)}
-                    className="btn-ghost !py-1 px-3 text-xs border-zinc-850 hover:bg-zinc-900"
+                    className="btn-ghost !py-1 px-3 text-xs border-[#d8e7f0] hover:bg-[#ebf3f3]"
                   >
                     Cancel
                   </button>
@@ -965,25 +965,25 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
             {/* Recommendations List Grid */}
             <div className="space-y-3">
               {(profile.testimonials || []).map((t, idx) => (
-                <div key={idx} className="flex items-center justify-between p-3.5 border border-zinc-850 rounded-xl bg-zinc-950 hover:border-zinc-700 transition-all">
+                <div key={idx} className="flex items-center justify-between p-3.5 border border-[#d8e7f0] rounded-xl bg-[#ffffff] hover:border-[#1da1f2] transition-all">
                   <div className="flex items-center gap-3 flex-1 pr-4 min-w-0">
                     {t.avatar_url ? (
                       <img src={t.avatar_url} alt="" className="w-8 h-8 rounded-full object-cover shrink-0" />
                     ) : (
-                      <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-[9px] text-white shrink-0" style={{ background: `linear-gradient(135deg, ${themeColor}, #8b5cf6)` }}>
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-[9px] text-white shrink-0" style={{ background: `linear-gradient(135deg, ${themeColor}, #0ea5e9)` }}>
                         {t.reviewer_name.split(' ').slice(0,2).map(n=>n[0]).join('').toUpperCase()}
                       </div>
                     )}
                     <div className="min-w-0">
-                      <h4 className="text-sm font-semibold text-white truncate leading-tight">{t.reviewer_name}</h4>
-                      <p className="text-[10px] text-zinc-550 truncate mt-0.5">{t.designation}</p>
+                      <h4 className="text-sm font-semibold text-[#0f1419] truncate leading-tight">{t.reviewer_name}</h4>
+                      <p className="text-[10px] text-[#536471] truncate mt-0.5">{t.designation}</p>
                     </div>
                   </div>
                   <div className="flex gap-1 shrink-0">
                     <button
                       type="button"
                       onClick={() => startEditTesti(idx)}
-                      className="p-1.5 rounded hover:bg-zinc-900 text-zinc-400 hover:text-white"
+                      className="p-1.5 rounded hover:bg-[#ebf3f3] text-[#536471] hover:text-[#137cc2]"
                     >
                       <ChevronRight size={15} />
                     </button>
@@ -999,7 +999,7 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
               ))}
 
               {(!profile.testimonials || profile.testimonials.length === 0) && testiEditIndex === null && (
-                <div className="p-8 border border-dashed border-zinc-800 rounded-xl text-center text-zinc-500 text-xs">
+                <div className="p-8 border border-dashed border-[#d8e7f0] rounded-xl text-center text-[#536471] text-xs">
                   No recommendations left. Click &quot;Add Review&quot; to write one.
                 </div>
               )}
@@ -1016,19 +1016,19 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
       {activeTab === 'blog' && (
         <div className="space-y-6">
           <div className="glass-card-static p-6 space-y-4">
-            <div className="flex items-center justify-between border-b border-zinc-800 pb-3">
+            <div className="flex items-center justify-between border-b border-[#d8e7f0] pb-3">
               <div>
-                <h3 className="text-white font-semibold text-sm flex items-center gap-1.5">
-                  <BookOpen size={15} className="text-purple-400" />
+                <h3 className="text-[#0f1419] font-bold text-sm flex items-center gap-1.5">
+                  <BookOpen size={15} className="text-sky-400" />
                   Article Publisher Studio
                 </h3>
-                <p className="text-[10px] text-zinc-500 mt-0.5">Publish and manage blog posts directly linked to your profile.</p>
+                <p className="text-[10px] text-[#536471] mt-0.5">Publish and manage blog posts directly linked to your profile.</p>
               </div>
               {blogEditId === null && (
                 <button
                   type="button"
                   onClick={startAddBlog}
-                  className="btn-ghost !py-1 px-2.5 text-xs text-purple-400 hover:text-white flex items-center gap-1 border-zinc-850 hover:bg-zinc-900"
+                  className="btn-ghost !py-1 px-2.5 text-xs text-sky-400 hover:text-[#137cc2] flex items-center gap-1 border-[#d8e7f0] hover:bg-[#ebf3f3]"
                 >
                   <Plus size={13} /> Add Article
                 </button>
@@ -1037,51 +1037,51 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
 
             {/* Article editor form */}
             {blogEditId !== null ? (
-              <div className="border border-zinc-850 rounded-xl p-4 bg-zinc-900/20 space-y-4">
-                <h4 className="text-xs font-semibold text-purple-400 uppercase tracking-wider">
+              <div className="border border-[#d8e7f0] rounded-xl p-4 bg-[#ffffff] space-y-4">
+                <h4 className="text-xs font-semibold text-sky-400 uppercase tracking-wider">
                   {blogEditId === '-1' ? 'Create New Article' : 'Edit Article Settings'}
                 </h4>
 
                 <div className="space-y-3">
                   <div>
-                    <label className="text-[10px] text-zinc-400 uppercase font-bold">Article Title *</label>
+                    <label className="text-[10px] text-[#536471] uppercase font-bold">Article Title *</label>
                     <input
                       type="text"
                       value={tempBlog.title || ''}
                       onChange={(e) => setTempBlog(prev => ({ ...prev, title: e.target.value }))}
-                      className="glass-input mt-1 !py-1.5 text-xs bg-zinc-950 border border-zinc-850"
+                      className="glass-input mt-1 !py-1.5 text-xs bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419]"
                       placeholder="e.g. Master React and Next.js Server Components"
                     />
                   </div>
 
                   <div>
-                    <label className="text-[10px] text-zinc-400 uppercase font-bold">Short Summary / Subtitle</label>
+                    <label className="text-[10px] text-[#536471] uppercase font-bold">Short Summary / Subtitle</label>
                     <input
                       type="text"
                       value={tempBlog.summary || ''}
                       onChange={(e) => setTempBlog(prev => ({ ...prev, summary: e.target.value }))}
-                      className="glass-input mt-1 !py-1.5 text-xs bg-zinc-950 border border-zinc-850"
+                      className="glass-input mt-1 !py-1.5 text-xs bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419]"
                       placeholder="e.g. An in-depth guide on streaming and dynamic layouts."
                     />
                   </div>
 
                   <div>
-                    <label className="text-[10px] text-zinc-400 uppercase font-bold">Body Content (Markdown Supported) *</label>
+                    <label className="text-[10px] text-[#536471] uppercase font-bold">Body Content (Markdown Supported) *</label>
                     <textarea
                       value={tempBlog.content || ''}
                       onChange={(e) => setTempBlog(prev => ({ ...prev, content: e.target.value }))}
-                      className="glass-textarea mt-1 !py-2 text-xs bg-zinc-950 border border-zinc-850 font-mono"
+                      className="glass-textarea mt-1 !py-2 text-xs bg-[#ffffff] border border-[#d8e7f0] text-[#0f1419] font-mono"
                       placeholder="Write your article markdown content here..."
                       rows={12}
                     />
                   </div>
                 </div>
 
-                <div className="flex justify-end gap-2 pt-2 border-t border-zinc-850">
+                <div className="flex justify-end gap-2 pt-2 border-t border-[#d8e7f0]">
                   <button
                     type="button"
                     onClick={() => setBlogEditId(null)}
-                    className="btn-ghost !py-1 px-3 text-xs border-zinc-850 hover:bg-zinc-900"
+                    className="btn-ghost !py-1 px-3 text-xs border-[#d8e7f0] hover:bg-[#ebf3f3]"
                   >
                     Cancel
                   </button>
@@ -1104,13 +1104,13 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                     <div className="loading-spinner !w-6 !h-6" />
                   </div>
                 ) : posts.map((post) => (
-                  <div key={post.id} className="flex items-center justify-between p-4 border border-zinc-850 rounded-xl bg-zinc-950 hover:border-zinc-800 transition-all font-sans">
+                  <div key={post.id} className="flex items-center justify-between p-4 border border-[#d8e7f0] rounded-xl bg-[#ffffff] hover:border-[#d8e7f0] transition-all font-sans">
                     <div className="min-w-0 pr-4">
-                      <h4 className="text-sm font-semibold text-white truncate">{post.title}</h4>
-                      <p className="text-[10px] text-zinc-550 truncate mt-0.5">
+                      <h4 className="text-sm font-semibold text-[#0f1419] truncate">{post.title}</h4>
+                      <p className="text-[10px] text-[#536471] truncate mt-0.5">
                         {post.summary || 'No summary compiled.'}
                       </p>
-                      <span className="text-[8px] text-zinc-650 font-mono uppercase tracking-wider mt-1.5 inline-block">
+                      <span className="text-[8px] text-[#536471] font-mono uppercase tracking-wider mt-1.5 inline-block">
                         Published: {new Date(post.published_at).toLocaleDateString()}
                       </span>
                     </div>
@@ -1119,7 +1119,7 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                       <button
                         type="button"
                         onClick={() => startEditBlog(post)}
-                        className="p-1.5 rounded hover:bg-zinc-900 text-zinc-400 hover:text-white"
+                        className="p-1.5 rounded hover:bg-[#ebf3f3] text-[#536471] hover:text-[#137cc2]"
                         title="Edit Article"
                       >
                         <Edit3 size={14} />
@@ -1137,7 +1137,7 @@ export default function VibeControlsContainer({ profile: initialProfile, saving,
                 ))}
 
                 {!postsLoading && posts.length === 0 && (
-                  <div className="p-12 border border-dashed border-zinc-850 rounded-xl text-center text-zinc-650 text-xs">
+                  <div className="p-12 border border-dashed border-[#d8e7f0] rounded-xl text-center text-[#536471] text-xs">
                     No articles published yet. Click &quot;Add Article&quot; to compile your first post.
                   </div>
                 )}

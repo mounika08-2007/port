@@ -50,24 +50,24 @@ export default function TestimonialsSection({ testimonials, themeColor }: Testim
 
               {/* Review Text */}
               <div className="mb-6">
-                <p className="text-slate-300 text-[0.95rem] leading-relaxed italic relative z-10">
+                <p className="text-[#0f1419] text-[0.95rem] leading-relaxed italic relative z-10">
                   &ldquo;{t.review_text}&rdquo;
                 </p>
               </div>
 
               {/* Reviewer Meta */}
-              <div className="flex items-center gap-4 border-t border-white/5 pt-4">
+              <div className="flex items-center gap-4 border-t border-[#d8e7f0] pt-4">
                 {t.avatar_url ? (
                   <img
                     src={t.avatar_url}
                     alt={t.reviewer_name}
-                    className="w-11 h-11 rounded-full object-cover border border-white/10"
+                    className="w-11 h-11 rounded-full object-cover border border-[#d8e7f0]"
                   />
                 ) : (
                   <div
                     className="w-11 h-11 rounded-full flex items-center justify-center font-bold text-sm text-white shrink-0"
                     style={{
-                      background: `linear-gradient(135deg, ${themeColor}aa, #8b5cf6aa)`,
+                      background: `linear-gradient(135deg, ${themeColor}aa, #0ea5e9aa)`,
                       textShadow: '0 2px 4px rgba(0,0,0,0.2)',
                     }}
                   >
@@ -80,8 +80,8 @@ export default function TestimonialsSection({ testimonials, themeColor }: Testim
                   </div>
                 )}
                 <div>
-                  <h4 className="text-white font-semibold text-sm">{t.reviewer_name}</h4>
-                  <p className="text-xs text-slate-500 mt-0.5">{t.designation}</p>
+                  <h4 className="text-[#0f1419] font-semibold text-sm">{t.reviewer_name}</h4>
+                  <p className="text-xs text-[#536471] mt-0.5">{t.designation}</p>
                 </div>
               </div>
             </motion.div>

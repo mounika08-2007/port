@@ -34,10 +34,10 @@ export default function MatrixRain({ themeColor = '#22c55e' }: MatrixRainProps) 
     const rgbString = hexToRgb(themeColor);
 
     const draw = () => {
-      ctx.fillStyle = 'rgba(9, 9, 11, 0.06)'; // Creates trailing effect seamlessly
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.08)'; // Light mode trailing background
       ctx.fillRect(0, 0, width, height);
       
-      ctx.fillStyle = `rgba(${rgbString}, 0.35)`; // Dynamic theme matrix dimming
+      ctx.fillStyle = `rgba(${rgbString}, 0.45)`; // Sky vivid matrix glyphs
       ctx.font = '14px monospace';
 
       for (let i = 0; i < drops.length; i++) {

@@ -188,7 +188,7 @@ export default function AIChatbot({ profile, themeColor, soundEnabled }: AIChatb
         onClick={toggleChat}
         className="fixed bottom-6 right-24 z-40 p-4 rounded-full text-white shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
         style={{
-          background: `linear-gradient(135deg, ${themeColor}, #a855f7)`,
+          background: `linear-gradient(135deg, ${themeColor}, #0ea5e9)`,
           boxShadow: `0 8px 30px -5px ${themeColor}50`,
         }}
         title="Chat with AI Assistant"
@@ -204,17 +204,14 @@ export default function AIChatbot({ profile, themeColor, soundEnabled }: AIChatb
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.95 }}
             transition={{ duration: 0.25 }}
-            className="fixed bottom-24 right-6 z-40 w-[350px] sm:w-[380px] h-[485px] bg-zinc-950 border border-zinc-850 rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+            className="fixed bottom-24 right-6 z-40 w-[350px] sm:w-[380px] h-[485px] bg-[#ffffff] border border-[#d8e7f0] rounded-2xl shadow-2xl flex flex-col overflow-hidden"
             style={{
-              boxShadow: `0 20px 40px -15px ${themeColor}20`,
+              boxShadow: `0 20px 40px -15px rgba(19, 124, 194, 0.2)`,
             }}
           >
             {/* Header */}
             <div
-              className="px-4.5 py-3.5 flex items-center justify-between text-white border-b border-zinc-900"
-              style={{
-                background: `linear-gradient(90deg, ${themeColor}15, transparent)`,
-              }}
+              className="px-4.5 py-3.5 flex items-center justify-between text-[#0f1419] border-b border-[#d8e7f0] bg-[#ebf3f3]"
             >
               <div className="flex items-center gap-2">
                 <div
@@ -224,20 +221,20 @@ export default function AIChatbot({ profile, themeColor, soundEnabled }: AIChatb
                   <Bot size={16} />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold leading-none">Profile AI Agent</h4>
-                  <span className="text-[9px] text-[#22c55e] mt-1 inline-block">● Online & Ready</span>
+                  <h4 className="text-xs font-bold leading-none text-[#0f1419]">Profile AI Agent</h4>
+                  <span className="text-[9px] text-[#00b87a] mt-1 inline-block font-medium">● Online & Ready</span>
                 </div>
               </div>
               <button
                 onClick={toggleChat}
-                className="p-1 rounded-lg text-zinc-550 hover:text-white hover:bg-zinc-900 transition-all cursor-pointer"
+                className="p-1 rounded-lg text-[#536471] hover:text-[#0f1419] hover:bg-[#E3ECF6] transition-all cursor-pointer"
               >
                 <X size={14} />
               </button>
             </div>
 
             {/* Chat Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-zinc-950/60 custom-scrollbar">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-[#f7f8f8] custom-scrollbar">
               {messages.map((msg) => (
                 <div
                   key={msg.id}
@@ -249,8 +246,8 @@ export default function AIChatbot({ profile, themeColor, soundEnabled }: AIChatb
                     style={{
                       background:
                         msg.sender === 'ai'
-                          ? `linear-gradient(135deg, ${themeColor}, #a855f7)`
-                          : `linear-gradient(135deg, #475569, #334155)`,
+                          ? `linear-gradient(135deg, ${themeColor}, #1e9df1)`
+                          : `linear-gradient(135deg, #137cc2, #0ea5e9)`,
                     }}
                   >
                     {msg.sender === 'ai' ? <Bot size={12} /> : <User size={12} />}
@@ -260,8 +257,8 @@ export default function AIChatbot({ profile, themeColor, soundEnabled }: AIChatb
                   <div
                     className={`max-w-[75%] p-3 rounded-2xl text-xs leading-relaxed whitespace-pre-wrap ${
                       msg.sender === 'user'
-                        ? 'bg-purple-600 text-white rounded-tr-none'
-                        : 'bg-zinc-900/90 text-zinc-350 border border-zinc-850 rounded-tl-none'
+                        ? 'bg-[#137cc2] text-white rounded-tr-none shadow-sm shadow-[#137cc2]/30'
+                        : 'bg-[#ffffff] text-[#0f1419] border border-[#d8e7f0] rounded-tl-none shadow-xs'
                     }`}
                   >
                     {msg.text}
@@ -273,14 +270,14 @@ export default function AIChatbot({ profile, themeColor, soundEnabled }: AIChatb
                 <div className="flex items-start gap-2.5">
                   <div
                     className="w-6.5 h-6.5 rounded-full shrink-0 flex items-center justify-center text-white text-[9px] font-bold"
-                    style={{ background: `linear-gradient(135deg, ${themeColor}, #a855f7)` }}
+                    style={{ background: `linear-gradient(135deg, ${themeColor}, #1e9df1)` }}
                   >
                     <Bot size={12} />
                   </div>
-                  <div className="bg-zinc-900 border border-zinc-850 p-3 rounded-2xl rounded-tl-none flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 bg-zinc-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <span className="w-1.5 h-1.5 bg-zinc-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <span className="w-1.5 h-1.5 bg-zinc-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  <div className="bg-[#ffffff] border border-[#d8e7f0] p-3 rounded-2xl rounded-tl-none flex items-center gap-1 shadow-xs">
+                    <span className="w-1.5 h-1.5 bg-[#137cc2] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <span className="w-1.5 h-1.5 bg-[#137cc2] rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-1.5 h-1.5 bg-[#137cc2] rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                   </div>
                 </div>
               )}
@@ -290,7 +287,7 @@ export default function AIChatbot({ profile, themeColor, soundEnabled }: AIChatb
 
             {/* Suggestions list (only show if AI isn't typing) */}
             {!isTyping && (
-              <div className="px-4 py-2 border-t border-zinc-900 bg-zinc-950 flex flex-wrap gap-1.5 shrink-0">
+              <div className="px-4 py-2 border-t border-[#d8e7f0] bg-[#ebf3f3] flex flex-wrap gap-1.5 shrink-0">
                 {[
                   'What are your skills?',
                   'Tell me about your projects',
@@ -301,7 +298,7 @@ export default function AIChatbot({ profile, themeColor, soundEnabled }: AIChatb
                     key={s}
                     type="button"
                     onClick={() => handleSuggestionClick(s)}
-                    className="px-2 py-1 rounded-md bg-zinc-900 border border-zinc-850 text-zinc-400 hover:text-white hover:border-zinc-700 transition-all text-[9px] font-semibold cursor-pointer"
+                    className="px-2 py-1 rounded-md bg-[#ffffff] border border-[#d8e7f0] text-[#536471] hover:text-[#137cc2] hover:border-[#1da1f2] hover:bg-[#E3ECF6] transition-all text-[9px] font-semibold cursor-pointer shadow-xs"
                   >
                     {s}
                   </button>
@@ -310,7 +307,7 @@ export default function AIChatbot({ profile, themeColor, soundEnabled }: AIChatb
             )}
 
             {/* Input Bar */}
-            <div className="border-t border-zinc-900 p-3.5 bg-zinc-950 flex items-center gap-2 shrink-0">
+            <div className="border-t border-[#d8e7f0] p-3.5 bg-[#ffffff] flex items-center gap-2 shrink-0">
               <input
                 type="text"
                 value={input}
@@ -324,11 +321,11 @@ export default function AIChatbot({ profile, themeColor, soundEnabled }: AIChatb
                   }
                 }}
                 placeholder="Ask something about me..."
-                className="flex-1 bg-transparent text-white border-none outline-none focus:ring-0 text-xs p-0 caret-purple-500"
+                className="flex-1 bg-transparent text-[#0f1419] border-none outline-none focus:ring-0 text-xs p-0 placeholder-[#8d9eb1] caret-[#137cc2]"
               />
               <button
                 onClick={() => sendMessage(input)}
-                className="p-1.5 rounded-lg text-purple-400 hover:text-white transition-all cursor-pointer"
+                className="p-1.5 rounded-lg text-[#137cc2] hover:text-[#1e9df1] hover:bg-[#E3ECF6] transition-all cursor-pointer"
                 title="Send Message"
               >
                 <Send size={14} />

@@ -18,7 +18,7 @@ interface HistoryItem {
 }
 
 export default function TerminalModal({ profile, onClose }: TerminalModalProps) {
-  const themeColor = profile.theme_color || '#6366f1';
+  const themeColor = !profile.theme_color || profile.theme_color === '#6366f1' ? '#1c9cf0' : profile.theme_color;
   const soundEnabled = profile.sound_effects_enabled ?? false;
 
   const [input, setInput] = useState('');
@@ -125,17 +125,17 @@ export default function TerminalModal({ profile, onClose }: TerminalModalProps) 
             node: (
               <div className="space-y-3 mt-1 pl-2">
                 {projects.map((p, idx) => (
-                  <div key={p.id} className="border-l border-zinc-800 pl-3">
-                    <span className="text-zinc-500 font-mono">[{idx + 1}]</span>{' '}
-                    <span className="font-bold text-white">{p.title}</span>
-                    <p className="text-xs text-zinc-400 mt-0.5 leading-relaxed">{p.description}</p>
+                  <div key={p.id} className="border-l-2 border-[#137cc2] pl-3 bg-[#ffffff] p-2.5 rounded-r-lg my-2 border border-[#d8e7f0] shadow-xs">
+                    <span className="text-[#137cc2] font-mono font-bold">[{idx + 1}]</span>{' '}
+                    <span className="font-bold text-[#0f1419]">{p.title}</span>
+                    <p className="text-xs text-[#536471] mt-0.5 leading-relaxed">{p.description}</p>
                     <div className="flex gap-4 mt-1 text-[10px]">
                       {p.live_link && (
                         <a
                           href={p.live_link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-purple-400 hover:underline flex items-center gap-1"
+                          className="text-sky-400 hover:underline flex items-center gap-1"
                         >
                           🔗 Live Demo
                         </a>
@@ -145,7 +145,7 @@ export default function TerminalModal({ profile, onClose }: TerminalModalProps) 
                           href={p.github_link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-indigo-400 hover:underline flex items-center gap-1"
+                          className="text-sky-400 hover:underline flex items-center gap-1"
                         >
                           💻 GitHub Repository
                         </a>
@@ -173,7 +173,7 @@ export default function TerminalModal({ profile, onClose }: TerminalModalProps) 
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-purple-400 hover:underline"
+                    className="text-sky-400 hover:underline"
                   >
                     {link.url}
                   </a>
@@ -186,7 +186,7 @@ export default function TerminalModal({ profile, onClose }: TerminalModalProps) 
                     href={profile.resume_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-purple-400 hover:underline"
+                    className="text-sky-400 hover:underline"
                   >
                     Download Resume PDF
                   </a>
@@ -225,25 +225,25 @@ export default function TerminalModal({ profile, onClose }: TerminalModalProps) 
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 bg-[#000]/60 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 bg-slate-900/40 backdrop-blur-sm">
       <motion.div
         ref={containerRef}
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.95, opacity: 0 }}
         transition={{ duration: 0.25 }}
-        className={`bg-zinc-950 border border-zinc-800 flex flex-col overflow-hidden rounded-xl shadow-2xl transition-all duration-300 ${
+        className={`bg-[#ffffff] border border-[#d8e7f0] flex flex-col overflow-hidden rounded-xl shadow-2xl transition-all duration-300 ${
           isFullscreen ? 'w-full h-full max-w-none' : 'w-full max-w-3xl h-[65vh]'
         }`}
         style={{
-          boxShadow: `0 20px 50px -15px ${themeColor}15`,
+          boxShadow: `0 20px 50px -15px rgba(19, 124, 194, 0.2)`,
         }}
       >
         {/* Terminal Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-900 bg-zinc-900/30 font-mono select-none">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-[#d8e7f0] bg-[#ebf3f3] font-mono select-none">
           <div className="flex items-center gap-2">
-            <TerminalIcon size={14} className="text-zinc-400" />
-            <span className="text-xs text-zinc-400 font-semibold uppercase tracking-wider">
+            <TerminalIcon size={14} className="text-[#137cc2]" />
+            <span className="text-xs text-[#0f1419] font-bold uppercase tracking-wider">
               bash // {profile.slug}_portfolio_terminal
             </span>
           </div>
@@ -254,14 +254,14 @@ export default function TerminalModal({ profile, onClose }: TerminalModalProps) 
                 playSound('click', soundEnabled);
                 setIsFullscreen(!isFullscreen);
               }}
-              className="p-1 rounded text-zinc-550 hover:text-white hover:bg-zinc-900 transition-all"
+              className="p-1 rounded text-[#536471] hover:text-[#0f1419] hover:bg-[#E3ECF6] transition-all"
               title={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
             >
               {isFullscreen ? <Minimize2 size={13} /> : <Maximize2 size={13} />}
             </button>
             <button
               onClick={onClose}
-              className="p-1 rounded text-zinc-550 hover:text-red-400 hover:bg-red-500/10 transition-all"
+              className="p-1 rounded text-[#536471] hover:text-red-500 hover:bg-red-500/10 transition-all"
               title="Close Terminal"
             >
               <X size={13} />
@@ -272,14 +272,14 @@ export default function TerminalModal({ profile, onClose }: TerminalModalProps) 
         {/* Terminal Screen */}
         <div
           onClick={() => inputRef.current?.focus()}
-          className="flex-1 overflow-y-auto p-5 font-mono text-sm leading-relaxed text-zinc-300 space-y-4"
+          className="flex-1 overflow-y-auto p-5 font-mono text-sm leading-relaxed text-[#0f1419] bg-[#f7f8f8] space-y-4"
         >
           {history.map((item, idx) => (
             <div key={idx} className="whitespace-pre-wrap">
               {item.type === 'input' ? (
-                <span className="text-white font-bold">{item.text}</span>
+                <span className="text-[#137cc2] font-bold">{item.text}</span>
               ) : (
-                <div className="text-zinc-400">
+                <div className="text-[#536471]">
                   {item.text}
                   {item.node}
                 </div>
@@ -292,8 +292,8 @@ export default function TerminalModal({ profile, onClose }: TerminalModalProps) 
         </div>
 
         {/* Input Bar */}
-        <div className="flex items-center gap-2 border-t border-zinc-900 px-5 py-3.5 bg-zinc-950 font-mono text-sm">
-          <span className="text-purple-400 font-bold select-none shrink-0">$</span>
+        <div className="flex items-center gap-2 border-t border-[#d8e7f0] px-5 py-3.5 bg-[#ffffff] font-mono text-sm">
+          <span className="font-bold select-none shrink-0" style={{ color: themeColor }}>$</span>
           <input
             ref={inputRef}
             type="text"
@@ -307,7 +307,7 @@ export default function TerminalModal({ profile, onClose }: TerminalModalProps) 
                 handleCommand(input);
               }
             }}
-            className="flex-1 bg-transparent text-white border-none outline-none focus:ring-0 p-0 font-mono caret-purple-500"
+            className="flex-1 bg-transparent text-[#0f1419] border-none outline-none focus:ring-0 p-0 font-mono placeholder-[#8d9eb1] caret-[#137cc2]"
             autoComplete="off"
             autoCorrect="off"
             autoCapitalize="off"

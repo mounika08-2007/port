@@ -1,13 +1,11 @@
-import { createServerClient } from '@/lib/supabase';
-import type { Profile } from '@/types/database.types';
 import LandingClient from './LandingClient';
 
-export default async function HomePage() {
-  const supabase = createServerClient();
-  const { data: profiles } = await supabase
-    .from('profiles')
-    .select('slug, full_name, professional_title, avatar_url, theme_color, bio')
-    .order('created_at', { ascending: true });
+export const metadata = {
+  title: 'Persona Flow — Your Career. Your Identity. Your Portfolio.',
+  description:
+    'Create a professional portfolio that grows with your career. Persona Flow transforms your skills, education, projects and achievements into a personalized digital portfolio — without writing a single line of code.',
+};
 
-  return <LandingClient profiles={(profiles as Profile[]) || []} />;
+export default function HomePage() {
+  return <LandingClient />;
 }

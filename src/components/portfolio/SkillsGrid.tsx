@@ -78,9 +78,9 @@ export default function SkillsGrid({ skills, themeColor }: SkillsGridProps) {
                     key={skill.id}
                     className="px-3 py-1.5 text-sm rounded-lg border transition-all duration-300 hover:scale-105 cursor-default"
                     style={{
-                      borderColor: `${themeColor}30`,
-                      background: `${themeColor}10`,
-                      color: '#e2e8f0',
+                      borderColor: '#d8e7f0',
+                      background: '#E3ECF6',
+                      color: '#0f1419',
                     }}
                   >
                     {skill.skill_name}

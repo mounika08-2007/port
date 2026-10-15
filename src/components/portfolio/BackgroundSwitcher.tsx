@@ -22,7 +22,7 @@ export default function BackgroundSwitcher({ effect = 'mesh-gradient', themeColo
     case 'cyber-grid':
       return <CyberGrid themeColor={themeColor} />;
     case 'none':
-      return <div className="fixed inset-0 bg-[#050508] -z-10" />;
+      return <div className="fixed inset-0 bg-[#ffffff] -z-10" />;
     case 'mesh-gradient':
     default:
       return <MeshGradient themeColor={themeColor} />;

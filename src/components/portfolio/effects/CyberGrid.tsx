@@ -38,7 +38,7 @@ export default function CyberGrid({ themeColor }: CyberGridProps) {
       <div 
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(circle at 50% 50%, transparent 20%, rgba(5, 5, 8, 0.45) 80%)'
+          background: 'radial-gradient(circle at 50% 50%, transparent 40%, rgba(216, 231, 240, 0.4) 100%)'
         }}
       />
     </div>
